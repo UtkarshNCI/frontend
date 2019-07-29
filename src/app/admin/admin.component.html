@@ -1,5 +1,5 @@
-  <ngb-tabset type="pills">
-    <ngb-tab title="Show Product" destroyOnHide='true'>
+  <ngb-tabset>
+    <ngb-tab title="Show Product"  >
       <ng-template ngbTabContent>
         <div class="col-md-6">
         Search: <input class="form-control ml-2" type="text" [formControl]="filter"/>  
@@ -7,26 +7,26 @@
           <thead>
           <tr>
             <th scope="col">productname</th>
-            <th scope="col">brand</th>
+            <!-- <th scope="col">brand</th>
             <th scope="col">ModelNumber</th>
             <th scope="col">Price</th>
             <th scope="col">Quantity</th>
             <th scope="col">Description</th>
             <th scope="col">Edit</th>
-            <th scope="col">Delete</th>
+            <th scope="col">Delete</th> -->
           </tr>
           </thead>
           <tbody>
-              <tr *ngFor="let product of product|async;index as i">
+              <tr *ngFor="let product of product;index as i">
                   <th scope="row">{{ i + 1 }}</th>
-                  <td>{{product.productName}}</td>
-                  <td>{{product.brand}}</td>
+                  <!-- <td>{{product.productName}}</td> -->
+                  <!-- <td>{{product.brand}}</td>
                   <td>{{product.modelNumber}}</td>
                   <td>{{product.price}}</td>
                   <td>{{product.quantity}}</td>
-                  <td>{{product.description}}</td>
+                  <td>{{product.description}}</td> -->
                   <td><ngb-highlight [result]="product.productName" [term]="filter.value"></ngb-highlight></td>
-                  <td><ngb-highlight [result]="country.population | number" [term]="filter.value"></ngb-highlight></td>
+                  <!-- <td><ngb-highlight [result]="country.population | number" [term]="filter.value"></ngb-highlight></td> -->
                   <!-- <td><button type="button" class="btn btn-success" (click)="getNavigation('view', product.p_id)">View</button></td> -->
                   <td><button type="button" class="btn btn-warning" (click)="getNavigation('update', product.p_id)">Edit</button></td>
                   <td><button type="button" class="btn btn-danger"(click)="deleteProduct(product.productId)">Delete</button></td>
@@ -39,12 +39,12 @@
        
       </ng-template>
     </ngb-tab>
-    <ngb-tab destroyOnHide="true">
+    <ngb-tab  id ="2">
       <ng-template ngbTabTitle ><b>Fancy</b> title</ng-template>
       <ng-template ngbTabContent><p>khfsf</p>
       </ng-template>
     </ngb-tab>
-    <ngb-tab title="Add to Inventory" destroyOnHide='true'>
+    <ngb-tab title="Add to Inventory"  id="3">
       <ng-template ngbTabTitle></ng-template>
       <ng-template ngbTabContent>
         <br>

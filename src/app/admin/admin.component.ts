@@ -1,15 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,PipeTransform } from '@angular/core';
 import { AdminService } from '../service/admin.service';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import {Inventory} from '../models/inventoryModel';
 import {Product} from '../models/productModel';
+import { DecimalPipe } from '@angular/common';
+import { Observable } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
+
+
+const productarr: Product[]=[];
 
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.scss'],
-  providers:[AdminService]
+  providers:[AdminService,DecimalPipe]
 })
+
+
 export class AdminComponent implements OnInit {
 
   inventoryForm: FormGroup;
@@ -18,8 +26,16 @@ export class AdminComponent implements OnInit {
   showproductresponse:any;
   product: Product[];
   deletionStatus: any;
+  filter = new FormControl('');
+  productfilter:Observable<Product[]>;
 
-  constructor(private fb:FormBuilder,private adminService:AdminService) { }
+  constructor(private fb:FormBuilder,private adminService:AdminService,public pipe: DecimalPipe) {
+   
+    this.productfilter = this.filter.valueChanges.pipe(
+      startWith(''),
+      map(text => search(text, pipe))
+    ); 
+   }
 
   ngOnInit() {
     this.inventoryForm = this.fb.group({
@@ -35,6 +51,8 @@ export class AdminComponent implements OnInit {
     this.reloadProduct();
 
   }
+
+  
   
   deleteProduct(id: number){
     console.log(id);
@@ -57,7 +75,8 @@ export class AdminComponent implements OnInit {
       this.showproductresponse=result;
     },error=>{},()=>{this.product=this.showproductresponse.json();
       console.log(this.product);}
-    );       
+    );  
+        
   }
   
   
@@ -83,4 +102,10 @@ export class AdminComponent implements OnInit {
     }
   
 
+}
+function search(text: string, pipe: PipeTransform): Product[] {
+  return productarr.filter(product => {
+    const term = text.toLowerCase();
+    return product.productname.toLowerCase().includes(term)
+  });
 }
