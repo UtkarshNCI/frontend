@@ -34,11 +34,10 @@
                   <td><ngb-highlight [result]="product.description" ></ngb-highlight></td>                                
                   <td><button type="button" class="btn btn-warning" (click)="getNavigation('update', product.p_id)">Edit</button></td>
                   <td><button type="button" class="btn btn-danger"(click)="deleteProduct(product.productId)">Delete</button></td>
-                 
-                  </tr>
+              </tr>
           </tbody>
-            </table>
-        
+          </table>
+          <ngb-pagination [collectionSize]="product.length" [(page)]="page" [pageSize]="pageSize"></ngb-pagination>
           </div>
        
       </ng-template>
