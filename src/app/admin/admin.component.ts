@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 
 
-const productarr: Product[]=[];
+var productarr: Product[]=[];
 
 @Component({
   selector: 'app-admin',
@@ -27,14 +27,16 @@ export class AdminComponent implements OnInit {
   product: Product[];
   deletionStatus: any;
   filter = new FormControl('');
-  productfilter:Observable<Product[]>;
+  productfilter$:Observable<Product[]>;
 
   constructor(private fb:FormBuilder,private adminService:AdminService,public pipe: DecimalPipe) {
    
-    this.productfilter = this.filter.valueChanges.pipe(
+    this.reloadProduct();
+    this.productfilter$ = this.filter.valueChanges.pipe(
       startWith(''),
       map(text => search(text, pipe))
     ); 
+    console.log(this.productfilter$);
    }
 
   ngOnInit() {
@@ -48,7 +50,7 @@ export class AdminComponent implements OnInit {
       description:['',Validators.required],
     });
     
-    this.reloadProduct();
+    //this.reloadProduct();
 
   }
 
@@ -64,8 +66,13 @@ export class AdminComponent implements OnInit {
       }
       else{
         alert('Could not delete the product');
+      }},error => {
+
+      },()=>{
+        this.reloadProduct();
       }
-    }
+      
+    
     );
   }
 }
@@ -74,7 +81,10 @@ export class AdminComponent implements OnInit {
     this.adminService.displayProduct("MOUSE").subscribe((result)=>{
       this.showproductresponse=result;
     },error=>{},()=>{this.product=this.showproductresponse.json();
-      console.log(this.product);}
+     productarr=this.product;
+    //  console.log(productarr);
+    //   console.log(this.product);
+    }
     );  
         
   }
@@ -104,8 +114,10 @@ export class AdminComponent implements OnInit {
 
 }
 function search(text: string, pipe: PipeTransform): Product[] {
+  console.log("in func");
   return productarr.filter(product => {
     const term = text.toLowerCase();
-    return product.productname.toLowerCase().includes(term)
+    return product.productname.toLowerCase().includes(term)||
+    pipe.transform(product.brand).includes(term);
   });
 }

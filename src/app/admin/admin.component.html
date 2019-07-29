@@ -6,18 +6,19 @@
           <table class="table table-striped">
           <thead>
           <tr>
+            <th></th>
             <th scope="col">productname</th>
-            <!-- <th scope="col">brand</th>
+            <th scope="col">brand</th>
             <th scope="col">ModelNumber</th>
             <th scope="col">Price</th>
             <th scope="col">Quantity</th>
             <th scope="col">Description</th>
             <th scope="col">Edit</th>
-            <th scope="col">Delete</th> -->
+            <th scope="col">Delete</th>
           </tr>
           </thead>
           <tbody>
-              <tr *ngFor="let product of product;index as i">
+              <tr *ngFor="let product of product ;index as i">
                   <th scope="row">{{ i + 1 }}</th>
                   <!-- <td>{{product.productName}}</td> -->
                   <!-- <td>{{product.brand}}</td>
@@ -26,8 +27,11 @@
                   <td>{{product.quantity}}</td>
                   <td>{{product.description}}</td> -->
                   <td><ngb-highlight [result]="product.productName" [term]="filter.value"></ngb-highlight></td>
-                  <!-- <td><ngb-highlight [result]="country.population | number" [term]="filter.value"></ngb-highlight></td> -->
-                  <!-- <td><button type="button" class="btn btn-success" (click)="getNavigation('view', product.p_id)">View</button></td> -->
+                  <td><ngb-highlight [result]="product.brand" [term]="filter.value"></ngb-highlight></td>
+                  <td><ngb-highlight [result]="product.modelNumber" ></ngb-highlight></td>
+                  <td><ngb-highlight [result]="product.price" ></ngb-highlight></td>
+                  <td><ngb-highlight [result]="product.quantity"></ngb-highlight></td>
+                  <td><ngb-highlight [result]="product.description" ></ngb-highlight></td>                                
                   <td><button type="button" class="btn btn-warning" (click)="getNavigation('update', product.p_id)">Edit</button></td>
                   <td><button type="button" class="btn btn-danger"(click)="deleteProduct(product.productId)">Delete</button></td>
                  
