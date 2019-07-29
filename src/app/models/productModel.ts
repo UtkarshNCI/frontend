@@ -1,12 +1,12 @@
 export class Product
 {
     productId:number;
-    productname:string;
+    productName:string;
     description:string;
     address:string;
     price:number;
     category:string;
     quantity:number;
-    brand:number;
+    brand:string;
     
 }

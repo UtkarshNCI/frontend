@@ -9,6 +9,7 @@ import { map, startWith } from 'rxjs/operators';
 
 
 var productarr: Product[]=[];
+var productlist: Product[]=[];
 
 @Component({
   selector: 'app-admin',
@@ -30,13 +31,11 @@ export class AdminComponent implements OnInit {
   productfilter$:Observable<Product[]>;
 
   constructor(private fb:FormBuilder,private adminService:AdminService,public pipe: DecimalPipe) {
-   
+    
     this.reloadProduct();
-    this.productfilter$ = this.filter.valueChanges.pipe(
-      startWith(''),
-      map(text => search(text, pipe))
-    ); 
-    console.log(this.productfilter$);
+    //this.onValueChanges();   works first time only
+    //console.log("coming"); 
+    //console.log(this.productfilter$);
    }
 
   ngOnInit() {
@@ -49,12 +48,17 @@ export class AdminComponent implements OnInit {
       quantity:['',Validators.required],
       description:['',Validators.required],
     });
+
     
+    this.onValueChanges();    
     //this.reloadProduct();
 
   }
 
-  
+  filtersearch(){
+    console.log("in filter search");
+    
+  }
   
   deleteProduct(id: number){
     console.log(id);
@@ -82,7 +86,9 @@ export class AdminComponent implements OnInit {
       this.showproductresponse=result;
     },error=>{},()=>{this.product=this.showproductresponse.json();
      productarr=this.product;
-    //  console.log(productarr);
+     productlist=this.product;
+     
+     console.log(productarr);
     //   console.log(this.product);
     }
     );  
@@ -110,14 +116,41 @@ export class AdminComponent implements OnInit {
           {});
 
     }
-  
 
+    searchparam:any;
+
+    onValueChanges(): void {
+      console.log("hola");
+      this.filter.valueChanges.subscribe(val=>{
+        this.search(val,this.pipe)
+      },error=>{},()=>{
+        //console.log(this.searchparam);
+      })
+      // this.productfilter$ = this.filter.valueChanges.pipe(
+      //   startWith(''),
+      //   map(text => this.search(text, this.pipe))
+      // );
+      
+    }
+
+    search(text: string, pipe: PipeTransform){
+      console.log("in func");
+      // return productarr.filter(product => {
+      //   const term = text.toLowerCase();
+      //   return product.productname.toLowerCase().includes(term)||
+      //   pipe.transform(product.brand).includes(term);
+      // });
+     // console.log(productarr);
+      //console.log(text);
+      // productarr.forEach(element => {
+      //   console.log(element.productName);
+      //   console.log("ok");
+      // });
+      this.product=productarr.filter(product => {
+          const term = text.toLowerCase();
+          return product.productName.toLowerCase().includes(term)||
+          product.brand.includes(term);
+        });
+    }
 }
-function search(text: string, pipe: PipeTransform): Product[] {
-  console.log("in func");
-  return productarr.filter(product => {
-    const term = text.toLowerCase();
-    return product.productname.toLowerCase().includes(term)||
-    pipe.transform(product.brand).includes(term);
-  });
-}
+
