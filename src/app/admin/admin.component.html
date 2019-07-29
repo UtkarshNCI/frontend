@@ -1,0 +1,165 @@
+  <ngb-tabset type="pills">
+    <ngb-tab title="Show Product" destroyOnHide='true'>
+      <ng-template ngbTabContent>
+        <div class="col-md-6">
+        Search: <input class="form-control ml-2" type="text" [formControl]="filter"/>  
+          <table class="table table-striped">
+          <thead>
+          <tr>
+            <th scope="col">productname</th>
+            <th scope="col">brand</th>
+            <th scope="col">ModelNumber</th>
+            <th scope="col">Price</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Description</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
+          </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let product of product|async;index as i">
+                  <th scope="row">{{ i + 1 }}</th>
+                  <td>{{product.productName}}</td>
+                  <td>{{product.brand}}</td>
+                  <td>{{product.modelNumber}}</td>
+                  <td>{{product.price}}</td>
+                  <td>{{product.quantity}}</td>
+                  <td>{{product.description}}</td>
+                  <td><ngb-highlight [result]="product.productName" [term]="filter.value"></ngb-highlight></td>
+                  <td><ngb-highlight [result]="country.population | number" [term]="filter.value"></ngb-highlight></td>
+                  <!-- <td><button type="button" class="btn btn-success" (click)="getNavigation('view', product.p_id)">View</button></td> -->
+                  <td><button type="button" class="btn btn-warning" (click)="getNavigation('update', product.p_id)">Edit</button></td>
+                  <td><button type="button" class="btn btn-danger"(click)="deleteProduct(product.productId)">Delete</button></td>
+                 
+                  </tr>
+          </tbody>
+            </table>
+        
+          </div>
+       
+      </ng-template>
+    </ngb-tab>
+    <ngb-tab destroyOnHide="true">
+      <ng-template ngbTabTitle ><b>Fancy</b> title</ng-template>
+      <ng-template ngbTabContent><p>khfsf</p>
+      </ng-template>
+    </ngb-tab>
+    <ngb-tab title="Add to Inventory" destroyOnHide='true'>
+      <ng-template ngbTabTitle></ng-template>
+      <ng-template ngbTabContent>
+        <br>
+          <form [formGroup]="inventoryForm" >
+              <div class="form-group">
+                <div class="row">
+                  
+                  <div class="col-md-2">
+                    <label for="productName" style="color: lightseagreen;font-size: medium;" ><b>Product Name:</b></label>
+                  </div>
+                  <div class="col-md-6">
+                    <input type="text" formControlName="productName" placeholder="Product Name" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                  </div>
+                  <div class="col-md-4">
+                    <span style="font-weight: bold;color: red;" *ngIf="!inventoryForm.controls['productName'].valid&&inventoryForm.controls['productName'].dirty">
+                      <span *ngIf="inventoryForm.controls.productName.errors.required">Product Name is Required.</span>
+                    </span> 
+                  </div>
+                </div>
+                <br>
+                
+                <div class="row">
+                  <div class="col-md-2">
+                    <label for="brand" style="color: lightseagreen;font-size: medium;" ><b>Product Brand</b></label>
+                  </div>
+                  <div class="col-md-6">
+                    <input type="text" formControlName="brand" placeholder="Product Brand Name" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                  </div>
+                  <div class="col-md-4">
+                      <span style="font-weight: bold;color: red;"  *ngIf="!inventoryForm.controls['brand'].valid&&inventoryForm.controls['brand'].dirty">
+                          <span *ngIf="inventoryForm.controls.brand.errors.required">Product Brand is Required.</span>
+                        </span>
+                  </div>
+                </div>
+                <br>
+                
+                <div class="row">
+                  <div class="col-md-2">
+                    <label for="modelNumber" style="color: lightseagreen;font-size: medium;" ><b>Product Model Number</b></label>
+                  </div>
+                  <div class="col-md-6">
+                    <input type="text" formControlName="modelNumber" placeholder="Product Model Number" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                  </div>
+                  <div class="col-md-4">
+                      <span style="font-weight: bold;color: red;"  *ngIf="!inventoryForm.controls['modelNumber'].valid&&inventoryForm.controls['modelNumber'].dirty">
+                          <span *ngIf="inventoryForm.controls.modelNumber.errors.required">Product Brand is Required.</span>
+                        </span>
+                  </div>
+                </div>
+                <br>
+                
+                <div class="row">
+                  <div class="col-md-2">
+                    <label for="category" style="color: lightseagreen;font-size: medium;" ><b>Category:</b></label>
+                  </div>
+                  <div class="col-md-6">
+                    <input type="text" formControlName="category" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="Enter Category">
+                  </div>
+                  <div class="col-md-4">
+                      <span style="font-weight: bold;color: red;" *ngIf="!inventoryForm.controls['category'].valid&&inventoryForm.controls['category'].dirty">
+                          <span *ngIf="inventoryForm.controls.category.errors.required">Enter Category</span>
+                        </span>
+                  </div>
+                </div>                              
+               <br>
+                
+               <div class="row">
+                  <div class="col-md-2">
+                    <label for="price" style="color: lightseagreen;font-size: medium;" ><b>Price:</b></label>
+                  </div>
+                  <div class="col-md-6">
+                    <input type="number" name="price" formControlName="price" placeholder="Price" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                  </div>
+                  <div class="col-md-4">
+                      <span style="font-weight: bold;color: red;" *ngIf="!inventoryForm.controls['price'].valid&&inventoryForm.controls['price'].dirty">
+                          <span *ngIf="inventoryForm.controls.price.errors.required">Product Price is Required.</span>
+                        </span>
+                  </div>
+                </div>
+                <br>
+               
+                <div class="row">
+                  <div class="col-md-2">
+                    <label for="quantity" style="color: lightseagreen;font-size: medium;" ><b>Quantity:</b></label>
+                  </div>
+                  <div class="col-md-6">
+                    <input type="number" formControlName="quantity" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="Enter quantity">
+                  </div>
+                  <div class="col-md-4">
+                      <span style="font-weight: bold;color: red;" *ngIf="!inventoryForm.controls['quantity'].valid&&inventoryForm.controls['quantity'].dirty">
+                          <span *ngIf="inventoryForm.controls.quantity.errors.required">Enter Total Quantity</span>
+                        </span>
+                  </div>
+                </div>
+                <br>
+               
+                <div class="row">
+                  <div class="col-md-2">
+                    <label for="description" style="color: lightseagreen;font-size: medium;" ><b>Description:</b></label>
+                  </div>
+                  <div class="col-md-6">
+                    <input type="text" formControlName="description" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="Enter description">
+                  </div>
+                  <div class="col-md-4">
+                      <span style="font-weight: bold;color: red;" *ngIf="!inventoryForm.controls['description'].valid&&inventoryForm.controls['description'].dirty">
+                          <span *ngIf="inventoryForm.controls.description.errors.required">Enter Description</span>
+                        </span>
+                  </div>
+                </div>
+                <br>
+              </div>
+              <button type="button" style="margin-left: 39%;"  class="btn btn-outline-success" (click)="AddInventory()"><b>Order Inventory</b></button>
+            </form>
+<!-- [disabled]="!inventoryForm.valid" in button -->
+      </ng-template>
+    </ngb-tab>
+
+  </ngb-tabset>
