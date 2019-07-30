@@ -41,8 +41,8 @@ export class SignupComponent implements OnInit {
       name:  ['', Validators.compose([Validators.required, Validators.minLength(3),Validators.maxLength(50)])],
       password:['',Validators.compose([Validators.required, Validators.minLength(3),Validators.maxLength(50)])],
       email:['',Validators.compose([Validators.required,Validators.email])],
-      mob:['',Validators.required],
-      dob:[''],
+      mob:['',Validators.compose([Validators.required,Validators.minLength(10),Validators.maxLength(10)])],
+      dob:['',Validators.compose([Validators.required])],
     });
     
   }
