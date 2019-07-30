@@ -15,7 +15,7 @@
       <ul class="navbar-nav ml-auto">
   
         <li class="nav-item active d-none d-xl-block" *ngIf="!isLoggedIn">
-          <a class="nav-link navbar-text"  (click)="open(content)"class="nav-link btn mt-1" role="button"
+          <a class="nav-link navbar-text"  routerLink="/login" class="nav-link btn mt-1" role="button"
           style="border-color: #999;" ><b>Login/Signup</b></a>
         </li>&nbsp;&nbsp;
         <div class="btn-group mr-3" *ngIf="isLoggedIn" >

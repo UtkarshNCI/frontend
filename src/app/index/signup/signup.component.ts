@@ -8,14 +8,14 @@ import {Registration} from '../../models/userModel';
 import {RegistrationService} from '../../service/registration.service';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
-  animations: [routerTransition()]
+  selector: 'app-signup',
+  templateUrl: './signup.component.html',
+  styleUrls: ['./signup.component.scss'],
+  animations:[routerTransition()]
 })
-export class LoginComponent implements OnInit {
+export class SignupComponent implements OnInit {
 
-  
+
   closeResult: string;
   registrationForm: FormGroup;
   loginForm:FormGroup;
@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
   message = "";
   public globalResponse: any;
 
-  constructor( private fb: FormBuilder,private regService:RegistrationService,private authService:AuthenticationService,public router:Router ) {
+  constructor(private route:Router, private fb: FormBuilder,private regService:RegistrationService,private authService:AuthenticationService ) {
 
   }
   ngOnInit()
@@ -44,55 +44,51 @@ export class LoginComponent implements OnInit {
       mob:['',Validators.required],
       dob:[''],
     });
-    this.loginForm = this.fb.group({
-      email:  ['', [Validators.required]],
-      password:['',[Validators.required]],
-    });
+    
   }
 
- 
-  Login()
-  {
-    let user=this.loginForm.value;
-    this.isLoggedIn=false;
-    this.authService.removeToken();
-    this.alerts=[];
-    //console.log(user);
-        this.authService.ValidateUser(user)
+  OnRegister()
+  { 
+    let ngbdate=this.registrationForm.controls['dob'].value;
+    let month = ngbdate.month;
+    if(month<10){
+         month = "0"+ngbdate.month;
+    }
+    let day = ngbdate.day;
+    if(day<10){
+      day = "0"+ngbdate.day;
+    } 
+    let mydate= ngbdate.year+"-"+month+"-"+day;
+
+    this.registrationInputs=this.registrationForm.value;
+    this.registrationInputs['dob']=mydate;
+    console.log(this.registrationInputs);
+        this.regService.RegisterUser(this.registrationInputs)
             .subscribe((result) => {
               this.globalResponse = result;              
             },
             error => { //This is error part
-              console.log(error.message);
               this.alerts.push({
                 id: 2,
                 type: 'danger',
-                message: 'Either user name or password is incorrect.'
+                message: 'Registration failed with fallowing error:'+error,
               });
             },
             () => {
-                //This is Success part
-                //console.log(this.globalResponse._body);
-                var token = this.globalResponse._body;
-                var decoded = jwt_decode(token); 
-                //console.log(decoded.role);  //prinitng role               
-                //console.log(decoded);
-                this.authService.storeToken(this.globalResponse._body);  
-                this.authService.storeRole(decoded.role);
-                 this.alerts.push({
-                   id: 1,
-                   type: 'success',
-                   message: 'Login successful. Now you can close and proceed further.',
-                 });
-                 this.isLoggedIn=true;
-                 //this.GetClaims();
-                 this.router.navigateByUrl("");
-                
+                //  This is Success part
+                this.alerts.push({
+                  id: 1,
+                  type: 'success',
+                  message: 'Registration successful.',
+                });
+                this.route.navigateByUrl("");
                 }
-            )
-  }
-  
-
+              )
+            }
+     public closeAlert(alert: IAlert) {
+    const index: number = this.alerts.indexOf(alert);
+    this.alerts.splice(index, 1);
+  } 
   
 
   GetClaims()
@@ -128,6 +124,4 @@ export interface IAlert {
   type: string;
   message: string;
 }
-
-
 

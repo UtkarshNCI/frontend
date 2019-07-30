@@ -11,11 +11,12 @@ import { HttpModule } from '@angular/http';
 import { AdminComponent } from './admin/admin.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './index/login/login.component';
+import { SignupComponent } from './index/signup/signup.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent, NavbarComponent, AdminComponent, HomeComponent, LoginComponent, 
+    AppComponent, NavbarComponent, AdminComponent, HomeComponent, LoginComponent,  SignupComponent, 
   ],
   imports: [
     BrowserModule,
