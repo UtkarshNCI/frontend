@@ -8,6 +8,7 @@ import { Router, NavigationEnd } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
     public pushRightClass: string;
+    isLoggedIn:boolean=false;
 
     constructor( public router: Router) {
 
