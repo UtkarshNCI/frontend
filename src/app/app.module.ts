@@ -12,11 +12,13 @@ import { AdminComponent } from './admin/admin.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './index/login/login.component';
 import { SignupComponent } from './index/signup/signup.component';
+import { PageheaderComponent } from './pageheader/pageheader.component';
+import { LayoutComponent } from './layout/layout.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent, NavbarComponent, AdminComponent, HomeComponent, LoginComponent,  SignupComponent, 
+    AppComponent, NavbarComponent, AdminComponent, HomeComponent, LoginComponent,  SignupComponent, PageheaderComponent, LayoutComponent, 
   ],
   imports: [
     BrowserModule,
