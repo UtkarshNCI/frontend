@@ -9,10 +9,11 @@ import { NavbarComponent } from './index/navbar/navbar.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { AdminComponent } from './admin/admin.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
-    AppComponent, NavbarComponent, AdminComponent, 
+    AppComponent, NavbarComponent, AdminComponent, HomeComponent, 
   ],
   imports: [
     BrowserModule,

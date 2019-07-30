@@ -10,17 +10,17 @@
       <span class="navbar-toggler-icon"></span>
     </button> -->
   
-    <div class="collapse navbar-collapse" style="padding-left: 150px;" id="navbarSupportedContent">
+    <div class="collapse navbar-collapse" >
       <ul class="navbar-nav ml-auto">
   
-        <li class="nav-item active d-flex d-xl-block" *ngIf="!isLoggedIn">
+        <li class="nav-item active d-none d-xl-block" *ngIf="!isLoggedIn">
           <a class="nav-link navbar-text"  (click)="open(content)"class="nav-link btn mt-1" role="button"
           style="border-color: #999;" ><b>Login/Signup</b></a>
-        </li>
+        </li>&nbsp;&nbsp;
         <div class="btn-group mr-3" *ngIf="isLoggedIn" >
           <button type="button" class="btn btn-primary bg-dark" style="padding: .375rem 1rem !important;border-color: #999;"><b>User Details</b></button>
           <div class="btn-group" ngbDropdown role="group" aria-label="Button group with nested dropdown">
-            <button class="btn btn-primary dropdown-toggle-split" ngbDropdownToggle></button>
+            <button class="btn btn-primary dropdown-toggle-split bg-dark " ngbDropdownToggle style="border-color: #999;"></button>
             <div class="dropdown-menu" ngbDropdownMenu>
               <button routerLink='/profile' class="dropdown-item">Profile</button>
               <button  routerLink='/dashboard' class="dropdown-item">My Dashboard</button>
@@ -127,24 +127,6 @@
                         </div>
                       </div>
                       <br>
-                      <!-- <div class="row">
-                        <div class="col-md-2">
-                          <label for="FormControlRole" style="color: lightseagreen;font-size: medium;" ><b>Role*:</b></label>
-                        </div>
-                        <div class="col-md-6"> -->
-                          <!-- <input type="text" formControlName="Role" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"> -->
-                          <!-- <select  class="form-control"  formControlName="Role" id="exampleFormControlSelect2">
-                            <option [ngValue]="undefined">Select Role</option>
-                            <option>Customer</option>
-                            <option>Admin</option>
-                          </select>
-                        </div>
-                        <div class="col-md-4">
-                            <span style="font-weight: bold;color: red;" *ngIf="!registrationForm.controls['Role'].valid&&registrationForm.controls['Role'].dirty&&registrationForm.controls['Role'].touched">
-                                <span *ngIf="registrationForm.controls.Role.errors.required">Role is Required.</span>
-                              </span>
-                        </div>
-                      </div> -->
                       <br>
                       <div class="row">
                         <div class="col-md-2">
@@ -171,23 +153,6 @@
                         
                       </div>
                       <br>
-                      <!-- <div class="row">
-                          <div class="col-md-2">
-                            <label for="FormControlGender" style="color: lightseagreen;font-size: medium;" ><b>Gender:</b></label>
-                          </div>
-                          <div class="col-md-6"> -->
-                            <!-- <input type="text" formControlName="Gender" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"> -->
-                            <!-- <select class="form-control" formControlName="Gender" id="exampleFormControlSelect1">
-                                <option>Select Gender</option>
-                                <option>Male</option>
-                                <option>Female</option>
-                                <option>Not prefer to dislose</option>
-                              </select>
-                          </div>
-                          <div class="col-md-4">
-                            
-                          </div> -->
-                        <!-- </div> -->
                     </div>
                     <button type="button" style="margin-left: 39%;"  class="btn btn-outline-success" (click)="OnRegister()"><b>Register</b></button>
                   </form>
@@ -203,3 +168,4 @@
       </p>
     </div>
   </ng-template>
+
