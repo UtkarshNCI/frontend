@@ -33,9 +33,11 @@ export class AdminComponent implements OnInit {
   constructor(private fb:FormBuilder,private adminService:AdminService,public pipe: DecimalPipe) {
     
     this.reloadProduct();
+    this.product=[{productName:"",productId:0,price:0,brand:"",description:"",quantity:0,category:""}];
     //this.onValueChanges();   works first time only
     //console.log("coming"); 
     //console.log(this.productfilter$);
+  
    }
 
   ngOnInit() {
@@ -82,6 +84,7 @@ export class AdminComponent implements OnInit {
 }
   
   reloadProduct() {
+    
     this.adminService.displayProduct("MOUSE").subscribe((result)=>{
       this.showproductresponse=result;
     },error=>{},()=>{this.product=this.showproductresponse.json();
