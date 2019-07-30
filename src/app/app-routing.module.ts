@@ -7,9 +7,12 @@ import {LoginComponent} from './index/login/login.component';
 import {SignupComponent} from './index/signup/signup.component';
 
 
-const routes: Routes = [{path:"admin",component:AdminComponent},{path:"",component:HomeComponent},{path:"login",component:LoginComponent},
-{path:"signup",component:SignupComponent}];
+// const routes: Routes = [{path:"admin",component:AdminComponent},{path:"",component:HomeComponent},{path:"login",component:LoginComponent},
+// {path:"signup",component:SignupComponent},{ path: '', loadChildren: () => import('./layout/layout.module').then(m => m.LayoutModule),  }];
 
+
+
+const routes: Routes = [{ path: '', loadChildren: () => import('./layout/layout.module').then(m => m.LayoutModule),  }];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]

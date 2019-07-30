@@ -9,7 +9,7 @@ import { LayoutComponent } from './layout.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 
 @NgModule({
-  declarations: [],
+  
   imports: [
     CommonModule,TranslateModule,
     NgbDropdownModule,LayoutRoutingModule
