@@ -1,28 +1,66 @@
 <div class="login-page" [@routerTransition]>
-    <div class="row justify-content-md-center">
-        <div class="col-md-4">
-            <img class="user-avatar" src="assets/images/logo.png" width="150px" />
-            <h1>SB Admin BS4 Angular7</h1>
-            <form role="form">
-                <div class="form-content">
-                    <div class="form-group">
-                        <input type="text" class="form-control input-underline input-lg" id="" placeholder="{{ 'Full Name' | translate }}">
+        <div class="row justify-content-md-center">
+            <div class="col-md-4">
+                <img class="user-avatar" src="assets/images/logo.png" width="150px" />
+                <h1>Registration</h1>
+                <form role="form" [formGroup]="registrationForm">
+                    <div class="form-content">
+                        <div class="form-group">
+                            <input type="text" class="form-control input-underline input-lg" formControlName="name" id="" placeholder="{{ 'Full Name'  }}">
+                        </div>
+                        <span style="font-weight: bold;color:azure;" *ngIf="!registrationForm.controls['name'].valid&&registrationForm.controls['name'].dirty">
+                            <span *ngIf="registrationForm.controls.name.errors.required">User Name is Required.</span>
+                            <span *ngIf="registrationForm.controls.name.errors.minlength">User name minimum should be length of 3.</span>
+                            <span *ngIf="registrationForm.controls.name.errors.maxlength">User name maximum should be length of 50.</span>
+                        </span>
+    
+                        <div class="form-group" >
+                            <input type="password" formControlName="password" class="form-control input-underline input-lg" id="" placeholder="{{ 'Password'  }}">
+                        </div>
+                        <span style="font-weight: bold;color:azure;"  *ngIf="!registrationForm.controls['password'].valid&&registrationForm.controls['password'].dirty">
+                                <span *ngIf="registrationForm.controls.password.errors.required">Password is Required.</span>
+                                <span *ngIf="registrationForm.controls.password.errors.minlength">Password minimum should be length of 3.</span>
+                                <span *ngIf="registrationForm.controls.password.errors.maxlength">Password maximum should be length of 50.</span>
+                        </span>
+                    
+    
+                        <div class="form-group">
+                            <input type="text" formControlName="email" class="form-control input-underline input-lg" id="" placeholder="{{ 'Email'  }}">
+                        </div>
+                        <span style="font-weight: bold;color:azure;" *ngIf="!registrationForm.controls['email'].valid&&registrationForm.controls['email'].dirty">
+                            <span *ngIf="registrationForm.controls.email.errors.required">Email is Required.</span>
+                            <span *ngIf="registrationForm.controls.email.errors.email">Email is not in correct pattern.</span>
+                        </span>
+                        
+    
+                        
+                        <div class="form-group">
+                            <input type="text" formControlName="mob"  class="form-control input-underline input-lg" id="" placeholder="{{ 'Enter Mobile NO.'  }}">
+                        </div>
+                        <span style="font-weight: bold;color:azure;" *ngIf="!registrationForm.controls['mob'].valid&&registrationForm.controls['mob'].dirty">
+                            <span *ngIf="registrationForm.controls.mob.errors.required">Phone is Required.</span>
+                            <span *ngIf="registrationForm.controls.password.errors.length">Password minimum should be length of 10</span>
+                        </span>
+    
+    
+                        <div class="form-group">
+                            <input  placeholder="yyyy-mm-dd" class="form-control input-underline input-lg"
+                              ngbDatepicker #d="ngbDatepicker" formControlName="dob"   (click)="d.toggle()">
+                        </div>
+                        <span style="font-weight: bold;color:azure;" *ngIf="!registrationForm.controls['dob'].valid&&registrationForm.controls['dob'].dirty">
+                            <span *ngIf="registrationForm.controls.dob.errors.required">Phone is Required.</span>
+                        </span>
                     </div>
-
-                    <div class="form-group">
-                        <input type="text" class="form-control input-underline input-lg" id="" placeholder="{{ 'Email' | translate }}">
-                    </div>
-
-                    <div class="form-group">
-                        <input type="password" class="form-control input-underline input-lg" id="" placeholder="{{ 'Password' | translate }}">
-                    </div>
-                    <div class="form-group">
-                        <input type="password" class="form-control input-underline input-lg" id="" placeholder="{{ 'Repeat Password' | translate }}">
-                    </div>
-                </div>
-                <a class="btn rounded-btn" [routerLink]="['/dashboard']">{{ 'Register' | translate }}</a>&nbsp;
-                <a class="btn rounded-btn" [routerLink]="['/login']">{{ 'Log in' | translate }}</a>
-            </form>
+                    <button type="button" class="btn rounded-btn" (click)="OnRegister()" [disabled]="!registrationForm.valid">Register</button>&nbsp;
+                    <a class="btn rounded-btn" [routerLink]="['/login']">Log In</a>
+                    &nbsp;
+                    <a class="btn rounded-btn" [routerLink]="['']">Not Now</a>
+                </form>
+            </div>
         </div>
     </div>
-</div>
+    <div class="modal-footer">
+        <p *ngFor="let alert of alerts">
+          <ngb-alert style="width: 758px;" [type]="alert.type" (close)="closeAlert(alert)">{{ alert.message }}</ngb-alert>
+        </p>
+    </div>
