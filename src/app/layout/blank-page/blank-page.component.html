@@ -1,59 +1,51 @@
-   <div class="row mb-3">
-        <div class="col ">
+<div class="row mb-3">
+        <div class="col col-sm-6">
             <div class="card">
                 <div class="card-header">
-                    Select Component (<strong>Custom pc</strong>)
                 </div>
                 <div class="card-body">
-                        <div >
-                                <div ngbDropdown class="d-inline-block">
-                                  <button class="btn btn-outline-primary" id="dropdownBasic1"  ngbDropdownToggle >Select {{ques[count]}}</button> {{que.qu1}}
-                                  <div ngbDropdownMenu aria-labelledby="dropdownBasic1" [(ngModel)]="answ" ngDefaultControl>
-                                    <button ngbDropdownItem *ngFor="let ans of answer" [(ngModel)]="answe" ngDefaultControl [value]="ans" (click)="onSelect(ans)">{{ans}}</button>                                  
-                                  </div>
-                                  <br>
-                                  <div class="row" id="ok">
-                                        <div class="col-8 " id="ok">
-                                          <br>      
-                                        </div>
-                                        
-                                        <div class="col-4" id="ok">    
-                                                   <button class="btn btn-outline-primary" (click)="onClick()">Next</button>
-                                        </div>
-                                  </div>
-                                </div>
-                        </div>
+                       
                 </div>
             </div>
+            
         </div>
         <div class="col col-sm-6">
                 <div class="card">
                     <div class="card-header">
-                        Custom Pc Build (<strong>Selected Parts</strong>)
+                        <!-- Custom Pc Build (<strong>Selected Parts</strong>) -->
                     </div>
                     <div class="card-body">
                         dsjjfsd
-                        <!-- <div class="btn-group btn-group-toggle mb-3" ngbRadioGroup name="radioBasic" [(ngModel)]="model">
-                            <label ngbButtonLabel class="btn-primary">
-                                <input ngbButton type="radio" [value]="1"> Left (pre-checked)
-                            </label>
-                            <label ngbButtonLabel class="btn-primary">
-                                <input ngbButton type="radio" value="middle"> Middle
-                            </label>
-                            <label ngbButtonLabel class="btn-primary">
-                                <input ngbButton type="radio" [value]="false"> Right
-                            </label>
-                        </div> -->
-                        <div class="alert alert-info mb-0">
-                            <strong>Selected Value: </strong>{{model}}
-                         </div> 
-                     </div>
+                       
+                 
+                    </div> 
+                </div>
+        </div>
+</div>
+<div class="row mb-3">
+        <div class="col col-sm-6">
+            <div class="card">
+                <div class="card-header">
+                </div>
+                <div class="card-body">
+                       
                 </div>
             </div>
-    </div>
-    <div class="row mb-3">
-        <div class="col">
-                <a class="btn rounded-btn" >Ok</a>
-                <ngb-progressbar type="success" [value]="40"></ngb-progressbar> 
-        </div> 
-    </div> 
+            
+        </div>
+        <div class="col col-sm-6">
+                <div class="card">
+                    <div class="card-header">
+                        <!-- Custom Pc Build (<strong>Selected Parts</strong>) -->
+                    </div>
+                    <div class="card-body">
+                        dsjjfsd
+                       
+                 
+                    </div> 
+                </div>
+        </div>
+</div>
+    
+       
+   
