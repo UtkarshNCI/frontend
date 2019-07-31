@@ -21,13 +21,13 @@ var storeList:String[]=[];
 
 export class CustomComponent implements OnInit {
   showproductresponse:any;
-  progress:number=20;
-  answer:String[]=["Intel","Amd","Nvidia"] ;
-  @Input() answe:String="default";
-  s_ans:String;
-  public ques:String[]=["CPU","MOTHERBOARD","RAM","GRAPHIC CARD"];
-  public count:number=0;
-  public pan:String;
+  // progress:number=20;
+  //answer:String[]=["Intel","Amd","Nvidia"] ;
+  // @Input() answe:String="default";
+  // s_ans:String;
+  // public ques:String[]=["CPU","MOTHERBOARD","RAM","GRAPHIC CARD"];
+  // public count:number=0;
+   public pan:String;
 
 
   product: Product[];
@@ -40,7 +40,7 @@ export class CustomComponent implements OnInit {
 
   constructor(private fetchinfoService:FetchinfoService,private fb:FormBuilder) {  
     this.fetchProduct();
-    this.product=[{productName:"Test-Name",productId:0,price:0,brand:"Test-Brand",description:"",quantity:0,category:"HDD"}];
+    this.product=[{productName:"Test-Name",productId:0,price:0,brand:"Test-Brand",description:"",quantity:0,category:"CPU"}];
    }
 
   ngOnInit() {
@@ -51,18 +51,18 @@ fetchProduct() {
     
     this.fetchinfoService.fetchProduct(this.pan).subscribe((result)=>{
       this.showproductresponse=result;
-    },error=>{},()=>{this.answer=this.showproductresponse.json();
+    },error=>{},()=>{this.product=this.showproductresponse.json();
     
     }
     );  
         
   }
 
-  onClick(){
-    storeList.push(this.s_ans);
-    this.count=this.count+1;
-    console.log(storeList);
-  }
+  // onClick(){
+  //   storeList.push(this.s_ans);
+  //   this.count=this.count+1;
+  //   console.log(storeList);
+  // }
 
   // onSelects(abc:string){
   //   this.s_ans=abc;
@@ -73,11 +73,12 @@ fetchProduct() {
   rowSelected(item:any,category:String){
     console.log(item.price);
     console.log(category);
+    category="CPU";
     for (let index = 0; index < this.titlearr.length; index++) {
       
       if(this.titlearr[index]==category)
       {
-        this.titlearr[index]=this.titlearr[index]+item.productName;
+        this.titlearr[index]=this.titlearr[index]+""+item.productName;
       }
       
     }
