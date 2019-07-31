@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-// import {AdminComponent} from './admin/admin.component';
+import {AdminComponent} from './admin/admin.component';
 // import {NavbarComponent} from './index/navbar/navbar.component';
 // import { HomeComponent } from './home/home.component';
 // import {LoginComponent} from './index/login/login.component';
@@ -15,6 +15,7 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [{ path: '', loadChildren: () => import('./layout/layout.module').then(m => m.LayoutModule),  },
 { path: 'login', loadChildren: () => import('./login/login.module').then(m => m.LoginModule) },
 { path: 'signup', loadChildren: () => import('./signup/signup.module').then(m => m.SignupModule) },
+{path:"admin",component:AdminComponent}
 ];
 
 @NgModule({

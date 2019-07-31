@@ -8,7 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // import { NavbarComponent } from './index/navbar/navbar.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-// import { AdminComponent } from './admin/admin.component';
+ import { AdminComponent } from './admin/admin.component';
 // import { HomeComponent } from './home/home.component';
 // import { LoginComponent } from './index/login/login.component';
 // import { SignupComponent } from './index/signup/signup.component';
@@ -18,7 +18,7 @@ import { HttpModule } from '@angular/http';
 
 @NgModule({
   declarations: [
-    AppComponent 
+    AppComponent,AdminComponent 
   ],
   imports: [
     BrowserModule,
