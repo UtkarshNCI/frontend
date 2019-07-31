@@ -17,9 +17,9 @@ export class LoginComponent implements OnInit {
 
   
   closeResult: string;
-  registrationForm: FormGroup;
+  // registrationForm: FormGroup;
   loginForm:FormGroup;
-  registrationInputs: Registration[];
+  // registrationInputs: Registration[];
   currentUser: Registration[];
   isLoggedIn:boolean=false;
 
@@ -37,13 +37,13 @@ export class LoginComponent implements OnInit {
   }
   ngOnInit()
   {
-    this.registrationForm = this.fb.group({
-      name:  ['', Validators.compose([Validators.required, Validators.minLength(3),Validators.maxLength(50)])],
-      password:['',Validators.compose([Validators.required, Validators.minLength(3),Validators.maxLength(50)])],
-      email:['',Validators.compose([Validators.required,Validators.email])],
-      mob:['',Validators.required],
-      dob:[''],
-    });
+    // this.registrationForm = this.fb.group({
+    //   name:  ['', Validators.compose([Validators.required, Validators.minLength(3),Validators.maxLength(50)])],
+    //   password:['',Validators.compose([Validators.required, Validators.minLength(3),Validators.maxLength(50)])],
+    //   email:['',Validators.compose([Validators.required,Validators.email])],
+    //   mob:['',Validators.required],
+    //   dob:[''],
+    // });
     this.loginForm = this.fb.group({
       email:  ['', [Validators.required]],
       password:['',[Validators.required]],
@@ -95,25 +95,25 @@ export class LoginComponent implements OnInit {
 
   
 
-  GetClaims()
-  {
-        this.authService.getClaims()
-            .subscribe((result) => {
-              this.globalResponse = result;              
-            },
-            error => { //This is error part
-              console.log(error.message);
-            },
-            () => {
-                //  This is Success part
-               console.log(this.globalResponse );
-                let a=this.globalResponse;
-                this.currentUser=this.globalResponse;
-                this.authService.storeRole(this.currentUser);
-                }
-              )
+  // GetClaims() this code is jwt token which is already done above
+  // {
+  //       this.authService.getClaims()
+  //           .subscribe((result) => {
+  //             this.globalResponse = result;              
+  //           },
+  //           error => { //This is error part
+  //             console.log(error.message);
+  //           },
+  //           () => {
+  //               //  This is Success part
+  //              console.log(this.globalResponse );
+  //               let a=this.globalResponse;
+  //               this.currentUser=this.globalResponse;
+  //               this.authService.storeRole(this.currentUser);
+  //               }
+  //             )
             
-  } 
+  // } 
   LogOut()
   {
     this.isLoggedIn=false;
