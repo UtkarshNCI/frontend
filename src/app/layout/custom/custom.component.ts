@@ -31,7 +31,7 @@ export class CustomComponent implements OnInit {
 
 
   product: Product[];
-  titlearr:string[]=["CPU","Motherboard","RAM","Hard-disk","Keyboard","Mouse","Display"];
+  titlearr:string[]=["CPU","Motherboard","RAM","Harddisk","Keyboard","Mouse","Display"];
   
 
   
@@ -73,12 +73,12 @@ fetchProduct() {
   rowSelected(item:any,category:String){
     console.log(item.price);
     console.log(category);
-    category="CPU";
+    //category="CPU";
     for (let index = 0; index < this.titlearr.length; index++) {
       
       if(this.titlearr[index]==category)
       {
-        this.titlearr[index]=this.titlearr[index]+""+item.productName;
+        this.titlearr[index]=this.titlearr[index]+"  "+item.productName;
       }
       
     }
