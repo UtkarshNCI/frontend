@@ -6,16 +6,13 @@
         </a>
         <a [routerLink]="['/custompc']" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-bar-chart-o"></i>&nbsp;
-            <span>{{ 'Custome Build Pc'  }}</span>
+            <span>{{ 'Customise Your Pc'  }}</span>
         </a>
-        <a [routerLink]="['/prepc']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+        <!-- <a [routerLink]="['/prepc']" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-table"></i>&nbsp;
             <span>{{ 'Pre Configured Pc'  }}</span>
-        </a>
-        <a [routerLink]="['/accessories']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-fw fa-edit"></i>&nbsp;
-            <span>{{ 'Accessories'  }}</span>
-        </a>
+        </a> -->
+        
         <!-- <a [routerLink]="['/bs-element']" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-desktop"></i>&nbsp;
             <span>{{ 'Bootstrap Element ' }}</span>
@@ -31,31 +28,35 @@
         <div class="nested-menu">
             <a class="list-group-item" (click)="addExpandClass('pages')">
                 <i class="fa fa-plus"></i>&nbsp;
-                <span>{{ 'Menu' }}</span>
+                <span>{{ 'Pre Configured Pc' }}</span>
             </a>
             <li class="nested" [class.expand]="showMenu === 'pages'">
                 <ul class="submenu">
                     <li>
-                        <a href="javascript:void(0)">
+                        <a [routerLink]="['/prebuildpc', {para:'Personal'}]">
                             <i class="fa fa-monument"></i>&nbsp;
-                            <span>{{ 'Submenu'  }}</span>
+                            <span>{{ 'Personal'  }}</span>
                         </a>
                     </li>
                     <li>
-                        <a href="javascript:void(0)">
+                        <a [routerLink]="['/prebuildpc', {para: 'Gaming'}]">
                             <i class="fa fa-monument"></i>&nbsp;
-                            <span>{{ 'Submenu'  }}</span>
+                            <span>{{ 'Gaming'  }}</span>
                         </a>
                     </li>
                     <li>
-                        <a href="javascript:void(0)">
+                        <a [routerLink]="['/prebuildpc', {para: 'Business'}]">
                             <i class="fa fa-monument"></i>&nbsp;
-                            <span>{{ 'Submenu'  }}</span>
+                            <span>{{ 'Business'  }}</span>
                         </a>
                     </li>
                 </ul>
             </li>
         </div>
+        <a [routerLink]="['/accessories']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-fw fa-edit"></i>&nbsp;
+            <span>{{ 'Accessories'  }}</span>
+        </a>
         <!-- <div class="header-fields">
             <a (click)="rltAndLtr()" class="list-group-item">
                 <span><i class="fa fa-arrows-h"></i>&nbsp; RTL/LTR</span>
