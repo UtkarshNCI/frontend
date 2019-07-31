@@ -61,7 +61,7 @@
 
 
     <ngb-accordion [closeOthers]="true"  (panelChange)="beforeChange($event)" >
-            <ngb-panel id="Processor" title="CPU" >
+            <ngb-panel id="Processor" title="{{titlearr[0]}}" >
               <ng-template ngbPanelContent>
                   <div class="card mb-3">
                       <table class="card-body table table-hover">
@@ -91,7 +91,7 @@
                          
               </ng-template>
             </ngb-panel>
-            <ngb-panel id="MOTHERBOARD" title="Motherboard" >
+            <ngb-panel id="MOTHERBOARD" title="{{titlearr[1]}}" >
               <ng-template ngbPanelContent >
                   <div class="card mb-3">
                       <table class="card-body table table-hover">
@@ -120,7 +120,7 @@
                               <ngb-pagination [collectionSize]="product.length" [(page)]="page" [pageSize]="pageSize"></ngb-pagination>
               </ng-template>
             </ngb-panel>
-            <ngb-panel id="RAM" title="RAM" >
+            <ngb-panel id="RAM" title="{{titlearr[2]}}" >
               <ng-template ngbPanelContent>
                   <div class="card mb-3">
                       <table class="card-body table table-hover">
@@ -149,7 +149,7 @@
                               <ngb-pagination [collectionSize]="product.length" [(page)]="page" [pageSize]="pageSize"></ngb-pagination>
               </ng-template>
             </ngb-panel>
-            <ngb-panel id="HDD" title="Hard-Disk" >
+            <ngb-panel id="HDD" title={{titlearr[3]}} >
                 <ng-template ngbPanelContent>
                     <div class="card mb-3">
                         <table class="card-body table table-hover">
@@ -178,7 +178,7 @@
                                 <ngb-pagination [collectionSize]="product.length" [(page)]="page" [pageSize]="pageSize"></ngb-pagination>
                 </ng-template>
             </ngb-panel>
-            <ngb-panel id="KEYBOARD" title="KeyBooard"  >
+            <ngb-panel id="KEYBOARD" title="{{titlearr[4]}}"  >
                   <ng-template ngbPanelContent>
                       <div class="card mb-3">
                           <table class="card-body table table-hover">
@@ -207,7 +207,7 @@
                                   <ngb-pagination [collectionSize]="product.length" [(page)]="page" [pageSize]="pageSize"></ngb-pagination>
                   </ng-template>
             </ngb-panel>
-            <ngb-panel id="MOUSE" title="Mouse" >
+            <ngb-panel id="MOUSE" title={{titlearr[5]}} >
                     <ng-template ngbPanelContent>
                         <div class="card mb-3">
                             <table class="card-body table table-hover">
@@ -236,7 +236,7 @@
                                     <ngb-pagination [collectionSize]="product.length" [(page)]="page" [pageSize]="pageSize"></ngb-pagination>
                     </ng-template>
             </ngb-panel>
-            <ngb-panel id="DISPLAY" title="Display" >
+            <ngb-panel id="DISPLAY" title={{titlearr[6]}} >
                 <ng-template ngbPanelContent>
                     <div class="card mb-3">
                         <table class="card-body table table-hover">

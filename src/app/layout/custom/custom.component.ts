@@ -31,6 +31,7 @@ export class CustomComponent implements OnInit {
 
 
   product: Product[];
+  titlearr:string[]=["CPU","Motherboard","RAM","Hard-disk","Keyboard","Mouse","Display"];
   
 
   
@@ -39,7 +40,7 @@ export class CustomComponent implements OnInit {
 
   constructor(private fetchinfoService:FetchinfoService,private fb:FormBuilder) {  
     this.fetchProduct();
-    this.product=[{productName:"",productId:0,price:0,brand:"",description:"",quantity:0,category:""}];
+    this.product=[{productName:"Test-Name",productId:0,price:0,brand:"Test-Brand",description:"",quantity:0,category:"HDD"}];
    }
 
   ngOnInit() {
@@ -72,13 +73,21 @@ fetchProduct() {
   rowSelected(item:any,category:String){
     console.log(item.price);
     console.log(category);
+    for (let index = 0; index < this.titlearr.length; index++) {
+      
+      if(this.titlearr[index]==category)
+      {
+        this.titlearr[index]=this.titlearr[index]+item.productName;
+      }
+      
+    }
     storeList.push(item);
   }
 
   public beforeChange($event: NgbPanelChangeEvent) {
 
      
-     if ($event.panelId === 'preventchange-3' && $event.nextState === false) {
+     if ( $event.nextState === true) {
       this.pan=$event.panelId;
     }
      console.log(this.pan);
