@@ -29,11 +29,11 @@ export class AdminComponent implements OnInit {
   deletionStatus: any;
   filter = new FormControl('');
   productfilter$:Observable<Product[]>;
-  catname:string;
+  catname:string="";
 
   constructor(private fb:FormBuilder,private adminService:AdminService,public pipe: DecimalPipe,private fm:FormsModule) {
     
-    this.reloadProduct();
+    //this.reloadProduct();
     this.product=[{productName:"",productId:0,price:0,brand:"",description:"",quantity:0,category:""}];
     
     //this.onValueChanges();   works first time only
@@ -53,7 +53,7 @@ export class AdminComponent implements OnInit {
       description:['',Validators.required],
     });
 
-    this.categoryForm=this.fb.group({categoryOption:['All']});
+    this.categoryForm=this.fb.group({categoryOption:['']});
 
     
     this.onValueChanges();    
@@ -88,10 +88,10 @@ export class AdminComponent implements OnInit {
 }
   
   reloadProduct() {
-    console.log(this.catname);
+    //console.log(this.categoryForm.get('categoryOption'));
     //let cat=this.categoryForm.controls['category'].value;
     //console.log(this.categoryForm.controls['categoryOption']);
-    this.adminService.displayProduct("").subscribe((result)=>{
+    this.adminService.displayProduct(this.catname).subscribe((result)=>{
       this.showproductresponse=result;
     },error=>{},()=>{this.product=this.showproductresponse.json();
      productarr=this.product;
@@ -162,8 +162,11 @@ export class AdminComponent implements OnInit {
         });
     }
 
-    oncatSubmit(){
-      console.log("in on Submit");
+    modo(value: string){
+      //console.log(this.catname);
+       this.catname=value;
+       console.log(this.catname);
+       this.reloadProduct();
     }
 }
 

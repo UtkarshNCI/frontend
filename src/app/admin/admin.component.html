@@ -8,8 +8,8 @@
                           <label for="categoryOption" style="color: lightseagreen;font-size: medium;" ><b>Category:</b></label>
                         </div>
                         <div class="col-md-6">
-                          <select type="text" formControlName="categoryOption" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="Search Category" [{ngModel}]="catname" >
-                              <option value="All">All</option>
+                          <select type="text" formControlName="categoryOption" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="Search Category" (change)="modo($event.target.value)" >
+                              <option value="">All</option>
                               <option value="CPU">CPU</option>
                               <option value="Motherboard">Motherboard</option>
                               <option value="RAM">Ram</option>
