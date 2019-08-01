@@ -51,7 +51,7 @@ export class AdminComponent implements OnInit {
       description:['',Validators.required],
     });
 
-    this.categoryForm=this.fb.group({category:''});
+    this.categoryForm=this.fb.group({categoryOption:['']});
     
     this.onValueChanges();    
     //this.reloadProduct();
@@ -85,8 +85,9 @@ export class AdminComponent implements OnInit {
 }
   
   reloadProduct() {
-    let cat=this.categoryForm.controls['category'].value;
-    this.adminService.displayProduct(cat).subscribe((result)=>{
+    //let cat=this.categoryForm.controls['category'].value;
+    console.log(this.categoryForm['']);
+    this.adminService.displayProduct("").subscribe((result)=>{
       this.showproductresponse=result;
     },error=>{},()=>{this.product=this.showproductresponse.json();
      productarr=this.product;
