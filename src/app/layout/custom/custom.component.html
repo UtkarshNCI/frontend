@@ -274,8 +274,27 @@
     <ngb-panel id="2" title="Select Address" >
             <ng-template ngbPanelContent>
                 <div>
-                    OK
-                </div>   
+                 <form [formGroup]="addressForm" >
+                                <div class="form-group">
+                                  <div class="row">
+                                    <div class="col-md-2">
+                                      <label for="address" style="font-size: medium;" >Address:</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                      <textarea formControlName="address"
+                                      rows="5" placeholder="Enter Your Address" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"></textarea>
+                                    </div>
+                                    <div class="col-md-4">
+                                      <span style="font-weight: bold;color:darkslategrey;" *ngIf="!addressForm.controls['address'].valid&&addressForm.controls['address'].dirty">
+                                        <span *ngIf="addressForm.controls.address.errors.required">Address is Required.</span>
+                                      </span> 
+                                    </div>
+                                  </div>
+                                  <br>
+                                  <button type="button" style="margin-left: 39%;"  class="btn btn-outline-primary" (click)="PlaceOrder()"><b>Place Order</b></button>
+                                </div>   
+                </form>
+                </div>
             </ng-template>
     </ngb-panel>
 </ngb-accordion>    

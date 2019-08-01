@@ -1,7 +1,7 @@
 import { Component, OnInit,Input } from '@angular/core';
 import { routerTransition } from '../../router.animatons';
 import { FetchinfoService } from 'src/app/service/fetchinfo.service';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder , FormGroup, Validators, FormControl } from '@angular/forms';
 import {Product} from '../../models/productModel';
 import {NgbPanelChangeEvent} from '@ng-bootstrap/ng-bootstrap';
 
@@ -32,6 +32,7 @@ export class CustomComponent implements OnInit {
 
   product: Product[];
   titlearr:string[]=["CPU","Motherboard","RAM","Harddisk","Keyboard","Mouse","Display"];
+  addressForm:FormGroup;
   
 
   
@@ -39,16 +40,21 @@ export class CustomComponent implements OnInit {
 
 
   constructor(private fetchinfoService:FetchinfoService,private fb:FormBuilder) {  
-    this.fetchProduct();
+    //this.fetchProduct();
     this.product=[{productName:"Test-Name",productId:0,price:0,brand:"Test-Brand",description:"",quantity:0,category:"CPU"}];
    }
 
   ngOnInit() {
-    this.fetchProduct();
+    // this.fetchProduct();
+    this.addressForm = this.fb.group({
+      address:  ['', Validators.required],
+    });
+
   }
 
 fetchProduct() {
-    
+
+   console.log(this.pan);  
     this.fetchinfoService.fetchProduct(this.pan).subscribe((result)=>{
       this.showproductresponse=result;
     },error=>{},()=>{this.product=this.showproductresponse.json();
@@ -91,7 +97,8 @@ fetchProduct() {
      if ( $event.nextState === true) {
       this.pan=$event.panelId;
     }
-     console.log(this.pan);
+     //console.log(this.pan);
+     this.fetchProduct();
    
   }
 }
