@@ -1,6 +1,6 @@
 import { Component, OnInit,PipeTransform } from '@angular/core';
 import { AdminService } from '../service/admin.service';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl ,FormsModule } from '@angular/forms';
 import {Inventory} from '../models/inventoryModel';
 import {Product} from '../models/productModel';
 import { DecimalPipe } from '@angular/common';
@@ -29,8 +29,9 @@ export class AdminComponent implements OnInit {
   deletionStatus: any;
   filter = new FormControl('');
   productfilter$:Observable<Product[]>;
+  catname:string;
 
-  constructor(private fb:FormBuilder,private adminService:AdminService,public pipe: DecimalPipe) {
+  constructor(private fb:FormBuilder,private adminService:AdminService,public pipe: DecimalPipe,private fm:FormsModule) {
     
     this.reloadProduct();
     this.product=[{productName:"",productId:0,price:0,brand:"",description:"",quantity:0,category:""}];
@@ -53,7 +54,7 @@ export class AdminComponent implements OnInit {
     });
 
     this.categoryForm=this.fb.group({categoryOption:['All']});
-    console.log(this.inventoryForm);
+
     
     this.onValueChanges();    
     //this.reloadProduct();
@@ -87,6 +88,7 @@ export class AdminComponent implements OnInit {
 }
   
   reloadProduct() {
+    console.log(this.catname);
     //let cat=this.categoryForm.controls['category'].value;
     //console.log(this.categoryForm.controls['categoryOption']);
     this.adminService.displayProduct("").subscribe((result)=>{
@@ -158,6 +160,10 @@ export class AdminComponent implements OnInit {
           return product.productName.toLowerCase().includes(term)||
           product.brand.includes(term);
         });
+    }
+
+    oncatSubmit(){
+      console.log("in on Submit");
     }
 }
 

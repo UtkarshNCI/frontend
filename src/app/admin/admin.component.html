@@ -1,14 +1,14 @@
   <ngb-tabset class="color:black">
     <ngb-tab title="Show Product"  >
       <ng-template ngbTabContent>
-          <form [formGroup]="categoryForm" >
+          <form [formGroup]="categoryForm" (ngSubmit)="oncatSubmit()" >
               <div class="form-group">
                 <div class="row">
                         <div class="col-md-2">
                           <label for="categoryOption" style="color: lightseagreen;font-size: medium;" ><b>Category:</b></label>
                         </div>
                         <div class="col-md-6">
-                          <select type="text" formControlName="categoryOption" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="Search Category">
+                          <select type="text" formControlName="categoryOption" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="Search Category" [{ngModel}]="catname" >
                               <option value="All">All</option>
                               <option value="CPU">CPU</option>
                               <option value="Motherboard">Motherboard</option>
