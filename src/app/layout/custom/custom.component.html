@@ -57,9 +57,11 @@
                 <a class="btn rounded-btn" >Ok</a>
                 <ngb-progressbar type="success" [value]="40"></ngb-progressbar> 
         </div> 
-    </div> -->
-
-
+        </div> -->
+<ngb-accordion [closeOthers]="true" > 
+    <ngb-panel id="1" title="Select Pc Parts" >
+    <ng-template ngbPanelContent>       
+    <div>
     <ngb-accordion [closeOthers]="true"  (panelChange)="beforeChange($event)" >
             <ngb-panel id="Processor" title="{{titlearr[0]}}" >
               <ng-template ngbPanelContent>
@@ -266,3 +268,14 @@
                 </ng-template>
             </ngb-panel>
           </ngb-accordion>
+        </div>  
+    </ng-template>
+    </ngb-panel>
+    <ngb-panel id="2" title="Select Address" >
+            <ng-template ngbPanelContent>
+                <div>
+                    OK
+                </div>   
+            </ng-template>
+    </ngb-panel>
+</ngb-accordion>    
