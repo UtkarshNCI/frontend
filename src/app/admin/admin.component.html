@@ -3,7 +3,33 @@
       <ng-template ngbTabContent>
         <div class="col-md-6">
         Search: <input class="form-control ml-2" type="text" [formControl]="filter" /> <!--(input)="filtersearch()"--> 
-          <table class="table table-striped">
+        <br>
+        <form [formGroup]="categoryForm" >
+            <div class="form-group">
+              <div class="row">
+                      <div class="col-md-2">
+                        <label for="category" style="color: lightseagreen;font-size: medium;" ><b>Category:</b></label>
+                      </div>
+                      <div class="col-md-6">
+                        <select type="text" formControlName="category" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="Search Category">
+                            <option value="CPU">CPU</option>
+                            <option value="Motherboard">Motherboard</option>
+                            <option value="RAM">Ram</option>
+                            <option value="Harddisk">Harddisk</option>
+                            <option value="Keyboard">Keyboard</option>
+                            <option value="Mouse">Mouse</option>
+                            <option value="Display">Display</option>
+                        </select>    
+                        </div>
+                      <div class="col-md-4">
+                          <!-- <span style="font-weight: bold;color: red;" *ngIf="!inventoryForm.controls['category'].valid&&inventoryForm.controls['category'].dirty">
+                              <span *ngIf="inventoryForm.controls.category.errors.required">Enter Category</span>
+                            </span> -->
+                      </div>
+              </div>
+            </div>
+        </form>                      
+        <table class="table table-striped">
           <thead>
           <tr>
             <th></th>

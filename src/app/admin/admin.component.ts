@@ -20,7 +20,7 @@ var productlist: Product[]=[];
 
 
 export class AdminComponent implements OnInit {
-
+  categoryForm:FormGroup;
   inventoryForm: FormGroup;
   inventoryInputs:Inventory[];
   globalresponse:any;
@@ -51,6 +51,7 @@ export class AdminComponent implements OnInit {
       description:['',Validators.required],
     });
 
+    this.categoryForm=this.fb.group({category:''});
     
     this.onValueChanges();    
     //this.reloadProduct();
@@ -84,8 +85,8 @@ export class AdminComponent implements OnInit {
 }
   
   reloadProduct() {
-    
-    this.adminService.displayProduct("MOUSE").subscribe((result)=>{
+    let cat=this.categoryForm.controls['category'].value;
+    this.adminService.displayProduct(cat).subscribe((result)=>{
       this.showproductresponse=result;
     },error=>{},()=>{this.product=this.showproductresponse.json();
      productarr=this.product;
