@@ -3,10 +3,12 @@ import { routerTransition } from '../../router.animatons';
 import { FetchinfoService } from 'src/app/service/fetchinfo.service';
 import { FormBuilder , FormGroup, Validators, FormControl } from '@angular/forms';
 import {Product} from '../../models/productModel';
+import {Order} from '../../models/orderModel';
 import {NgbPanelChangeEvent} from '@ng-bootstrap/ng-bootstrap';
 
 var storeList:String[]=[];
 //var count:number=0;
+var itemList:Map<string,string>;
 
 @Component({
   selector: 'app-custom',
@@ -30,9 +32,11 @@ export class CustomComponent implements OnInit {
    public pan:String;
 
 
-  product: Product[];
+  product: Product[]; //displaying data in form
   titlearr:string[]=["CPU","Motherboard","RAM","Harddisk","Keyboard","Mouse","Display"];
   addressForm:FormGroup;
+  orderInputs:Order;//Sending this object to server
+  
   
 
   
@@ -88,7 +92,11 @@ fetchProduct() {
       }
       
     }
-    storeList.push(item);
+    
+    itemList.set(item.category,item.productId);
+
+    console.log(itemList);
+    
   }
 
   public beforeChange($event: NgbPanelChangeEvent) {
@@ -100,5 +108,10 @@ fetchProduct() {
      //console.log(this.pan);
      this.fetchProduct();
    
+  }
+
+  placeOrder(){
+    this.orderInputs['address']=this.addressForm.value;
+    
   }
 }
