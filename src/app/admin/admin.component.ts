@@ -34,6 +34,7 @@ export class AdminComponent implements OnInit {
     
     this.reloadProduct();
     this.product=[{productName:"",productId:0,price:0,brand:"",description:"",quantity:0,category:""}];
+    
     //this.onValueChanges();   works first time only
     //console.log("coming"); 
     //console.log(this.productfilter$);
@@ -51,7 +52,8 @@ export class AdminComponent implements OnInit {
       description:['',Validators.required],
     });
 
-    this.categoryForm=this.fb.group({categoryOption:['']});
+    this.categoryForm=this.fb.group({categoryOption:['All']});
+    console.log(this.inventoryForm);
     
     this.onValueChanges();    
     //this.reloadProduct();
@@ -86,7 +88,7 @@ export class AdminComponent implements OnInit {
   
   reloadProduct() {
     //let cat=this.categoryForm.controls['category'].value;
-    console.log(this.categoryForm['']);
+    //console.log(this.categoryForm.controls['categoryOption']);
     this.adminService.displayProduct("").subscribe((result)=>{
       this.showproductresponse=result;
     },error=>{},()=>{this.product=this.showproductresponse.json();
