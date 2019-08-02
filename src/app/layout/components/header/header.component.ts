@@ -8,7 +8,7 @@ import {Global} from '../../../shared/global';
     providers:[Global]
 })
 
-//var globals.isLoggedin=false;
+//var 
 
 export class HeaderComponent implements OnInit {
     public pushRightClass: string;
@@ -25,7 +25,6 @@ export class HeaderComponent implements OnInit {
                 this.toggleSidebar();
             }
         });
-        
         
     }
 
