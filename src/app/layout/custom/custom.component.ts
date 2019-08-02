@@ -8,7 +8,7 @@ import {NgbPanelChangeEvent} from '@ng-bootstrap/ng-bootstrap';
 
 var storeList:String[]=[];
 //var count:number=0;
-var itemList:Map<string,string>;
+var itemList:Map<string,any>;
 
 @Component({
   selector: 'app-custom',
@@ -93,7 +93,7 @@ fetchProduct() {
       
     }
     
-    itemList.set(item.category,item.productId);
+    itemList.set(item.category,item.productName);
 
     console.log(itemList);
     
