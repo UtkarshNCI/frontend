@@ -121,6 +121,7 @@ fetchProduct() {
     this.adminService.orderCustomer(this.orderInputs).subscribe((response)=>{
       if(response.status === 200){
             // this.reloadProduct();
+            console.log("ok");
            }},error =>{
 
            },()=>{

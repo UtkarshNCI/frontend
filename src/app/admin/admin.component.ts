@@ -6,7 +6,7 @@ import {Product} from '../models/productModel';
 import { DecimalPipe } from '@angular/common';
 import { Observable } from 'rxjs';
 //import { map, startWith } from 'rxjs/operators';
-import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { Order } from '../models/orderModel';
 
 
@@ -254,6 +254,7 @@ export class AdminComponent implements OnInit {
   
         },()=>{
           this.reloadProduct();
+          
         }
         
       

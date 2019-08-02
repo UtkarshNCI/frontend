@@ -176,7 +176,7 @@
 
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn  btn btn-danger" (click)="updateProduct()">Update</button>
+                <button type="button" class="btn  btn btn-danger" (click)="updateProduct();modal.dismiss('')">Update</button>
               </div>
           </ng-template>
           
@@ -195,7 +195,7 @@
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('cancel click')">Cancel</button>
-                  <button type="button" class="btn btn-danger" (click)="deleteProduct()">Delete</button>
+                  <button type="button" class="btn btn-danger" (click)="deleteProduct();modal.dismiss('')">Delete</button>
                 </div>
              
             </ng-template>
