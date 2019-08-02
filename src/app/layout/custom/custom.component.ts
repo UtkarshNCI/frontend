@@ -117,23 +117,33 @@ fetchProduct() {
 
   totalcalc:number=0;
   placeOrder(){
-    this.adminService.deleteProduct(this.id).subscribe((response) =>{
-      if(response.status === 200){
-        this.reloadProduct();
-      }
-      else{
-        console.log('Could not delete the product');
-      }},error => {
+    // this.adminService.deleteProduct(this.id).subscribe((response) =>{
+    //   if(response.status === 200){
+    //     this.reloadProduct();
+    //   }
+    //   else{
+    //     console.log('Could not delete the product');
+    //   }},error => {
 
-      },()=>{
-        this.reloadProduct();
-      }
+    //   },()=>{
+    //     this.reloadProduct();
+    //   }
       
     
+    // );
+    this.adminService.orderCustomer(this.orderInputs).subscribe((response)=>{
+      if(response.status === 200){
+            // this.reloadProduct();
+           }},error =>{
+
+           },()=>{
+
+           }
     );
   
     
   }
+
   openlet(content){
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'});
     this.orderInputs['address']=this.addressForm.value;

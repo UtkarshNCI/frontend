@@ -56,8 +56,12 @@ displayorder(){
   return this.http.get(this.apiURL5);
 }  
 
-orderCustomer(){
-  
+
+public apiURL6:string="http://localhost:8080/buildMyPc/User/placeOrder";
+orderCustomer(order:any){
+  const headers = new Headers({'Content-Type':'application/json'});
+    const requestOptions= new RequestOptions({headers :headers});
+    return this.http.post(this.apiURL6,order,requestOptions);
 }
 
 }
