@@ -56,6 +56,7 @@ export class LoginComponent implements OnInit {
   {
     let user=this.loginForm.value;
     this.globals.isLoggedIn=false;
+    localStorage.setItem('isLoggedin', 'false');   
     this.authService.removeToken();
     this.alerts=[];
     //console.log(user);
@@ -77,19 +78,21 @@ export class LoginComponent implements OnInit {
                 var token = this.globalResponse._body;
                 var decoded = jwt_decode(token); 
                 //console.log(decoded.role);  //prinitng role               
-                //console.log(decoded);
+                console.log(decoded.sub);
                 this.authService.storeToken(this.globalResponse._body);  
                 this.authService.storeRole(decoded.role);
+                localStorage.setItem('email',decoded.sub);
                  this.alerts.push({
                    id: 1,
                    type: 'success',
                    message: 'Login successful. Now you can close and proceed further.',
                  });
                  this.globals.isLoggedIn=true;
+                 console.log("in login"+this.globals.isLoggedIn);
                 //  console.log("success");
                  //this.GetClaims();
                  this.router.navigateByUrl("");
-                
+                localStorage.setItem('isLoggedin', 'true');             
                 }
             )
   }
@@ -120,6 +123,7 @@ export class LoginComponent implements OnInit {
   {
     this.globals.isLoggedIn=false;
     this.authService.removeToken();
+    localStorage.removeItem('isLoggedin');
   }
  
 

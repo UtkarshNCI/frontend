@@ -13,6 +13,7 @@ import {Global} from '../../../shared/global';
 export class HeaderComponent implements OnInit {
     public pushRightClass: string;
    
+    private ans:string;
 
     constructor( public router: Router,private globals: Global) {
 
@@ -25,11 +26,14 @@ export class HeaderComponent implements OnInit {
                 this.toggleSidebar();
             }
         });
+
+        
         
     }
 
     ngOnInit() {
         this.pushRightClass = 'push-right';
+        this.ans=localStorage.getItem('isLoggedin');
     }
 
     isToggled(): boolean {

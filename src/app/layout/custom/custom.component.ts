@@ -143,6 +143,7 @@ fetchProduct() {
       this.totalcalc=this.totalcalc+element.price;
     });
     this.orderInputs['total']=this.totalcalc;
+    this.orderInputs['email']=localStorage.getItem('email');
     console.log(this.totalcalc);
     console.log(this.orderInputs);
     
