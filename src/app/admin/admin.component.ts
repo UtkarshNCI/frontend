@@ -33,6 +33,7 @@ export class AdminComponent implements OnInit {
   catname:string="";
   updateInputs:Inventory;
   updateForm:FormGroup;
+  id:number;
 
   constructor(private fb:FormBuilder,private adminService:AdminService,public pipe: DecimalPipe,private fm:FormsModule,private modalService: NgbModal) {
     
@@ -69,8 +70,8 @@ export class AdminComponent implements OnInit {
     
   }
 
-  updateProduct(id:number){
-    this.adminService.updateProduct(this.updateInputs,id).subscribe((response)=>{
+  updateProduct(){
+    this.adminService.updateProduct(this.updateInputs,this.id).subscribe((response)=>{
       if(response.status == 200){
         this.reloadProduct();
       }
@@ -78,28 +79,29 @@ export class AdminComponent implements OnInit {
         console.log("Failed to update");
       }
     })
+    this.id=null;
   }
   
-  deleteProduct(id: number){
-    console.log(id);
-    const answer = confirm('are you sure you want to delete this poduct');
-    if( answer === true){
-    this.adminService.deleteProduct(id).subscribe((response) =>{
-      if(response.status === 200){
-        this.reloadProduct();
-      }
-      else{
-        alert('Could not delete the product');
-      }},error => {
+//   deleteProduct(id: number){
+//     console.log(id);
+//     const answer = confirm('are you sure you want to delete this poduct');
+//     if( answer === true){
+//     this.adminService.deleteProduct(id).subscribe((response) =>{
+//       if(response.status === 200){
+//         this.reloadProduct();
+//       }
+//       else{
+//         alert('Could not delete the product');
+//       }},error => {
 
-      },()=>{
-        this.reloadProduct();
-      }
+//       },()=>{
+//         this.reloadProduct();
+//       }
       
     
-    );
-  }
-}
+//     );
+//   }
+// }
   
   reloadProduct() {
     //console.log(this.categoryForm.get('categoryOption'));
@@ -196,6 +198,34 @@ export class AdminComponent implements OnInit {
         updatequantity:[uproduct.quantity,Validators.required],
         updatedescription:[uproduct.description,Validators.required],
       });
+      this.id=uproduct.productId;
+    }
+
+  
+    openlet(content,p_d:any){
+      this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'});
+      console.log(p_d.productId);
+      this.id=p_d.productId;
+    
+   
+    }
+
+    deleteProduct(){
+      this.adminService.deleteProduct(this.id).subscribe((response) =>{
+        if(response.status === 200){
+          this.reloadProduct();
+        }
+        else{
+          console.log('Could not delete the product');
+        }},error => {
+  
+        },()=>{
+          this.reloadProduct();
+        }
+        
+      
+      );
+      this.id=null;
     }
   
 }
