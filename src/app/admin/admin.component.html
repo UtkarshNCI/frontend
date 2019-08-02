@@ -392,6 +392,7 @@
     </ngb-tab>
     <ngb-tab id="4" title="Show Messages">
       <ng-template NgbTabContent>
+        <div>
         <table class="table table-striped">
           <thead>
           <tr>
@@ -412,7 +413,7 @@
                 </tr>
           </tbody>
           </table>
-          <ngb-pagination [collectionSize]="product.length" [(page)]="page" [pageSize]="pageSize"></ngb-pagination>
+          <ngb-pagination [collectionSize]="contactmessage.length" [(page)]="page" [pageSize]="pageSize"></ngb-pagination>
           </div>
       </ng-template>
     </ngb-tab>
