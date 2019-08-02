@@ -37,13 +37,14 @@ export class AdminComponent implements OnInit {
   id:number;
   order:Order[];
   orderproduct:Product[];
+  tempproduct:Product[]=[{productName:"First",productId:0,price:0,brand:"",description:"",quantity:0,category:""},{productName:"second",productId:0,price:0,brand:"",description:"",quantity:0,category:""}]
 
   constructor(private fb:FormBuilder,private adminService:AdminService,public pipe: DecimalPipe,private fm:FormsModule,private modalService: NgbModal) {
     
     //this.reloadProduct();
     this.product=[{productName:"",productId:0,price:0,brand:"",description:"",quantity:0,category:""}];
 
-    this.order=[{orderID:20,products:[],email:"abc@gmail.com",doo:new Date(),total:2200,address:"E1 state bank nagar"}];
+    this.order=[{orderID:20,products:this.tempproduct,email:"abc@gmail.com",doo:new Date(),total:2200,address:"E1 state bank nagar"}];
 
     
     //this.onValueChanges();   works first time only
