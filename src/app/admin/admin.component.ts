@@ -47,7 +47,7 @@ export class AdminComponent implements OnInit {
 
     this.order=[{orderID:20,products:this.tempproduct,email:"abc@gmail.com",doo:new Date(),total:2200,address:"E1 state bank nagar"}];
 
-    
+    this.contactmessage={name:"",phone:"",email:"",message:""}
     //this.onValueChanges();   works first time only
     //console.log("coming"); 
     //console.log(this.productfilter$);
@@ -67,7 +67,7 @@ export class AdminComponent implements OnInit {
 
     this.categoryForm=this.fb.group({categoryOption:['']});
 
-    
+    this.reloadMessage();
     this.onValueChanges();    
     //this.reloadProduct();
   
