@@ -5,11 +5,12 @@ import {Inventory} from '../models/inventoryModel';
 import {Product} from '../models/productModel';
 import { DecimalPipe } from '@angular/common';
 import { Observable } from 'rxjs';
-import { map, startWith } from 'rxjs/operators';
+//import { map, startWith } from 'rxjs/operators';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 
 var productarr: Product[]=[];
-var productlist: Product[]=[];
+//var productlist: Product[]=[];
 
 @Component({
   selector: 'app-admin',
@@ -31,7 +32,7 @@ export class AdminComponent implements OnInit {
   productfilter$:Observable<Product[]>;
   catname:string="";
 
-  constructor(private fb:FormBuilder,private adminService:AdminService,public pipe: DecimalPipe,private fm:FormsModule) {
+  constructor(private fb:FormBuilder,private adminService:AdminService,public pipe: DecimalPipe,private fm:FormsModule,private modalService: NgbModal) {
     
     //this.reloadProduct();
     this.product=[{productName:"",productId:0,price:0,brand:"",description:"",quantity:0,category:""}];
@@ -65,6 +66,17 @@ export class AdminComponent implements OnInit {
     console.log("in filter search");
     
   }
+
+  updateProduct(id:number){
+    this.adminService.updateProduct(id).subscribe((response)=>{
+      if(response.status == 200){
+        this.reloadProduct();
+      }
+      else{
+        console.log("Failed to update");
+      }
+    })
+  }
   
   deleteProduct(id: number){
     console.log(id);
@@ -95,7 +107,7 @@ export class AdminComponent implements OnInit {
       this.showproductresponse=result;
     },error=>{},()=>{this.product=this.showproductresponse.json();
      productarr=this.product;
-     productlist=this.product;
+     //productlist=this.product;
      
      console.log(productarr);
     //   console.log(this.product);
@@ -168,5 +180,12 @@ export class AdminComponent implements OnInit {
        console.log(this.catname);
        this.reloadProduct();
     }
+
+
+
+    open(content) {
+      this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'});
+    }
+  
 }
 

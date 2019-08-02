@@ -61,18 +61,46 @@
                   <td><ngb-highlight [result]="product.price" ></ngb-highlight></td>
                   <td><ngb-highlight [result]="product.quantity"></ngb-highlight></td>
                   <td><ngb-highlight [result]="product.description" ></ngb-highlight></td>                                
-                  <td><button type="button" class="btn btn-warning" (click)="getNavigation('update', product.p_id)">Edit</button></td>
+                  <!-- <td><button type="button" class="btn btn-warning" (click)="getNavigation('update', product.p_id)">Edit</button></td> -->
+                  <td><button class="btn  btn-outline-primary" (click)="open(content)">Edit</button></td>
                   <td><button type="button" class="btn btn-danger"(click)="deleteProduct(product.productId)">Delete</button></td>
               </tr>
           </tbody>
           </table>
           <ngb-pagination [collectionSize]="product.length" [(page)]="page" [pageSize]="pageSize"></ngb-pagination>
           </div>
-       
+          <ng-template #content let-modal>
+              <div class="modal-header">
+                <h4 class="modal-title" id="modal-basic-title">Product Details update</h4>
+                <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form>
+                  <div class="form-group">
+                    <label for="dateOfBirth">Date of birth</label>
+                    <div class="input-group">
+                      <input id="dateOfBirth" class="form-control" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #dp="ngbDatepicker">
+                      <div class="input-group-append">
+                        <button class="btn btn-outline-secondary calendar" (click)="dp.toggle()" type="button"></button>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn  btn btn-danger" (click)="modal.close('Save click')">Update</button>
+              </div>
+            </ng-template>
+            
+          
+            
+            <hr>
       </ng-template>
     </ngb-tab>
-    <ngb-tab  id ="2">
-      <ng-template ngbTabTitle ><b>Fancy</b> title</ng-template>
+    <ngb-tab  id ="2" >
+      <ng-template ngbTabTitle ></ng-template>
       <ng-template ngbTabContent><p>khfsf</p>
       </ng-template>
     </ngb-tab>
