@@ -6,6 +6,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { LayoutRoutingModule } from './layout-routing.module';
 import { LayoutComponent } from './layout.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { Global } from '../shared/global';
 
 
 @NgModule({
@@ -14,6 +15,6 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     CommonModule,
     NgbDropdownModule,LayoutRoutingModule
   ],
-  declarations: [LayoutComponent, SidebarComponent, HeaderComponent]
+  declarations: [LayoutComponent, SidebarComponent, HeaderComponent],providers:[Global]
 })
 export class LayoutModule { }

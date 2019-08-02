@@ -1,16 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
-
+import {Global} from '../../../shared/global';
 @Component({
     selector: 'app-header',
     templateUrl: './header.component.html',
-    styleUrls: ['./header.component.scss']
+    styleUrls: ['./header.component.scss'],
+    providers:[Global]
 })
+
+//var globals.isLoggedin=false;
+
 export class HeaderComponent implements OnInit {
     public pushRightClass: string;
-    isLoggedIn:boolean=false;
+   
 
-    constructor( public router: Router) {
+    constructor( public router: Router,private globals: Global) {
 
         this.router.events.subscribe(val => {
             if (
@@ -21,6 +25,8 @@ export class HeaderComponent implements OnInit {
                 this.toggleSidebar();
             }
         });
+        
+        
     }
 
     ngOnInit() {

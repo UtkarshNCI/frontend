@@ -6,6 +6,7 @@ import * as jwt_decode from 'jwt-decode';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import {Registration} from '../models/userModel';
 import {RegistrationService} from '../service/registration.service';
+import { Global } from '../shared/global';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +22,7 @@ export class LoginComponent implements OnInit {
   loginForm:FormGroup;
   // registrationInputs: Registration[];
   currentUser: Registration[];
-  isLoggedIn:boolean=false;
+  
 
   cartItemCount:number=0;
   approvalText:string="";
@@ -32,7 +33,7 @@ export class LoginComponent implements OnInit {
   message = "";
   public globalResponse: any;
 
-  constructor( private fb: FormBuilder,private regService:RegistrationService,private authService:AuthenticationService,public router:Router ) {
+  constructor( private fb: FormBuilder,private regService:RegistrationService,private authService:AuthenticationService,public router:Router ,private globals:Global) {
 
   }
   ngOnInit()
@@ -54,7 +55,7 @@ export class LoginComponent implements OnInit {
   Login()
   {
     let user=this.loginForm.value;
-    this.isLoggedIn=false;
+    this.globals.isLoggedIn=false;
     this.authService.removeToken();
     this.alerts=[];
     //console.log(user);
@@ -84,7 +85,8 @@ export class LoginComponent implements OnInit {
                    type: 'success',
                    message: 'Login successful. Now you can close and proceed further.',
                  });
-                 this.isLoggedIn=true;
+                 this.globals.isLoggedIn=true;
+                //  console.log("success");
                  //this.GetClaims();
                  this.router.navigateByUrl("");
                 
@@ -116,7 +118,7 @@ export class LoginComponent implements OnInit {
   // } 
   LogOut()
   {
-    this.isLoggedIn=false;
+    this.globals.isLoggedIn=false;
     this.authService.removeToken();
   }
  

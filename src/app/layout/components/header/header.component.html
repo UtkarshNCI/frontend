@@ -9,7 +9,7 @@
             <input class="form-control mr-sm-2" type="text" placeholder="{{ 'Search'  }}" >
         </form> -->
         <ul class="navbar-nav ml-auto">
-            <li class="nav-item d-none d-xl-block">
+            <li class="nav-item d-none d-xl-block" *ngIf="!isLoggedIn">
                     <a                    
                         class="nav-link btn mt-1" role="button"
                         style="padding: .375rem 1rem !important;border-color: #999;"
@@ -44,16 +44,13 @@
                         <i class="fa fa-fw fa-user"></i> {{ 'Profile' }}
                     </a>
                     <a class="dropdown-item" href="javascript:void(0)">
-                        <i class="fa fa-fw fa-envelope"></i> {{ 'Inbox'  }}
-                    </a>
-                    <a class="dropdown-item" href="javascript:void(0)">
                         <i class="fa fa-fw fa-gear"></i> {{ 'Settings'  }}
                     </a>
                     <a class="dropdown-item" [routerLink]="['/login']" (click)="onLoggedout()">
                         <i class="fa fa-fw fa-power-off"></i> {{ 'Log Out'  }}
                     </a>
                 </div>
-            </li>
+            </li>&nbsp;
         </ul>
     </div>
 </nav> 
