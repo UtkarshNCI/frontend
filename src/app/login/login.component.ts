@@ -124,6 +124,7 @@ export class LoginComponent implements OnInit {
     this.globals.isLoggedIn=false;
     this.authService.removeToken();
     localStorage.removeItem('isLoggedin');
+    localStorage.removeItem('email');
   }
  
 
