@@ -390,5 +390,31 @@
 <!-- [disabled]="!inventoryForm.valid" in button -->
       </ng-template>
     </ngb-tab>
+    <ngb-tab id="4" title="Show Messages">
+      <ng-template NgbTabContent>
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th></th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">MobileNo</th>
+            <th scope="col">Message</th>
+          </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let tmessage of contactmessage ;index as i">
+                  <th scope="row">{{ i + 1 }}</th>
+                  <td>{{tmessage.name}}</td>
+                  <td>{{tmessage.email}}</td>
+                  <td>{{tmessage.phone}}</td>
+                  <td>{{tmessage.message}}</td>                           
+                </tr>
+          </tbody>
+          </table>
+          <ngb-pagination [collectionSize]="product.length" [(page)]="page" [pageSize]="pageSize"></ngb-pagination>
+          </div>
+      </ng-template>
+    </ngb-tab>
 
   </ngb-tabset>
