@@ -38,7 +38,7 @@ export class CustomComponent implements OnInit {
   orderInputs:Order;//Sending this object to server
   
   itemList:Map<string,any>=new Map<string,any>();
-  itemtemp:Product[];
+  itemtemp:Product[]=[];
 
   
   
@@ -94,10 +94,10 @@ fetchProduct() {
       }
       
     }
+
+    this.itemList.set(item.category,item);
     
-    this.itemList.forEach((value: any, key: string) => {
-      this.itemtemp.push(value);
-  });
+  
 
    // console.log(itemList);
     
@@ -116,6 +116,9 @@ fetchProduct() {
 
   placeOrder(){
     this.orderInputs['address']=this.addressForm.value;
+    this.itemList.forEach((value: any, key: string) => {
+      this.itemtemp.push(value);
+  });
     this.orderInputs['products']=this.itemtemp;
     console.log();
     console.log(this.orderInputs);
