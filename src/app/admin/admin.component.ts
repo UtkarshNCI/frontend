@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 //import { map, startWith } from 'rxjs/operators';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { Order } from '../models/orderModel';
+import { ContactModule } from '../layout/contact/contact.module';
 
 
 var productarr: Product[]=[];
@@ -38,7 +39,7 @@ export class AdminComponent implements OnInit {
   order:Order[];
   orderproduct:Product[];
   tempproduct:Product[]=[{productName:"First",productId:0,price:0,brand:"",description:"",quantity:0,category:""},{productName:"second",productId:0,price:0,brand:"",description:"",quantity:0,category:""}]
-
+  contactmessage:ContactModule;
   constructor(private fb:FormBuilder,private adminService:AdminService,public pipe: DecimalPipe,private fm:FormsModule,private modalService: NgbModal) {
     
     //this.reloadProduct();
@@ -145,6 +146,14 @@ export class AdminComponent implements OnInit {
     }
     );  
         
+  }
+
+  reloadMessage(){
+    this.adminService.displayMessage().subscribe((result)=>{
+      this.showproductresponse=result;
+    },error=>{},()=>{this.contactmessage=this.showproductresponse.json();
+    }
+    );
   }
   
   
