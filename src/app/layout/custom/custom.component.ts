@@ -129,7 +129,7 @@ fetchProduct() {
     this.orderInputs['total']=this.totalcalc;
     console.log(this.totalcalc);
     console.log(this.orderInputs);
-
+    this.checkOut();
     
   }
   checkOut(){
