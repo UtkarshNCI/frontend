@@ -117,20 +117,7 @@ fetchProduct() {
 
   totalcalc:number=0;
   placeOrder(){
-    // this.adminService.deleteProduct(this.id).subscribe((response) =>{
-    //   if(response.status === 200){
-    //     this.reloadProduct();
-    //   }
-    //   else{
-    //     console.log('Could not delete the product');
-    //   }},error => {
 
-    //   },()=>{
-    //     this.reloadProduct();
-    //   }
-      
-    
-    // );
     this.adminService.orderCustomer(this.orderInputs).subscribe((response)=>{
       if(response.status === 200){
             // this.reloadProduct();
@@ -140,8 +127,6 @@ fetchProduct() {
 
            }
     );
-  
-    
   }
 
   openlet(content){
