@@ -4,7 +4,8 @@ import { FetchinfoService } from 'src/app/service/fetchinfo.service';
 import { FormBuilder , FormGroup, Validators, FormControl } from '@angular/forms';
 import {Product} from '../../models/productModel';
 import {Order} from '../../models/orderModel';
-import {NgbPanelChangeEvent} from '@ng-bootstrap/ng-bootstrap';
+import {NgbPanelChangeEvent,NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import { AdminService } from '../../service/admin.service';
 
 var storeList:String[]=[];
 //var count:number=0;
@@ -44,7 +45,7 @@ export class CustomComponent implements OnInit {
   
 
 
-  constructor(private fetchinfoService:FetchinfoService,private fb:FormBuilder) {  
+  constructor(private fetchinfoService:FetchinfoService,private fb:FormBuilder,private modalService: NgbModal,private adminService:AdminService) {  
     //this.fetchProduct();
     this.product=[{productName:"Test-Name",productId:0,price:0,brand:"Test-Brand",description:"",quantity:0,category:"CPU"}];
     this.orderInputs={address:"",doo:new Date(),email:"",orderID:1,products:this.product,total:1000};
@@ -116,6 +117,25 @@ fetchProduct() {
 
   totalcalc:number=0;
   placeOrder(){
+    this.adminService.deleteProduct(this.id).subscribe((response) =>{
+      if(response.status === 200){
+        this.reloadProduct();
+      }
+      else{
+        console.log('Could not delete the product');
+      }},error => {
+
+      },()=>{
+        this.reloadProduct();
+      }
+      
+    
+    );
+  
+    
+  }
+  openlet(content){
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'});
     this.orderInputs['address']=this.addressForm.value;
     this.itemList.forEach((value: any, key: string) => {
       this.itemtemp.push(value);
@@ -129,10 +149,8 @@ fetchProduct() {
     this.orderInputs['total']=this.totalcalc;
     console.log(this.totalcalc);
     console.log(this.orderInputs);
-    this.checkOut();
     
-  }
-  checkOut(){
-    
+ 
+  
   }
 }
