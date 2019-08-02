@@ -7,6 +7,7 @@ import { DecimalPipe } from '@angular/common';
 import { Observable } from 'rxjs';
 //import { map, startWith } from 'rxjs/operators';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import { Order } from '../models/orderModel';
 
 
 var productarr: Product[]=[];
@@ -34,11 +35,16 @@ export class AdminComponent implements OnInit {
   updateInputs:Inventory;
   updateForm:FormGroup;
   id:number;
+  order:Order[];
+  orderproduct:Product[];
 
   constructor(private fb:FormBuilder,private adminService:AdminService,public pipe: DecimalPipe,private fm:FormsModule,private modalService: NgbModal) {
     
     //this.reloadProduct();
     this.product=[{productName:"",productId:0,price:0,brand:"",description:"",quantity:0,category:""}];
+
+    this.order=[{orderID:20,products:[0],email:"abc@gmail.com",doo:new Date(),total:2200,address:"E1 state bank nagar"}];
+    
     
     //this.onValueChanges();   works first time only
     //console.log("coming"); 
@@ -193,7 +199,7 @@ export class AdminComponent implements OnInit {
     open(content,uproduct:any) {
       this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'});
       this.updateForm = this.fb.group({
-        updateName:  [uproduct.productName, Validators.required],
+        updateName:  [uproduct.productName,   Validators.required],
         updatebrand:[uproduct.brand,Validators.required],
         updatemodelNumber:[uproduct.modelNumber,Validators.required],
         updatecategory:[uproduct.category,Validators.required],
@@ -214,7 +220,10 @@ export class AdminComponent implements OnInit {
     
    
     }
+    openorder(content,o_products:any){
+      this.orderproduct=o_products;
 
+    }
     deleteProduct(){
       this.adminService.deleteProduct(this.id).subscribe((response) =>{
         if(response.status === 200){
