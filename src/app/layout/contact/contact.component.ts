@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ContactserviceService} from '../../service/contactservice.service';
 import { FormBuilder , FormGroup, Validators, FormControl } from '@angular/forms';
-import {}
+import {Contactdetails} from '../../models/contactModels';
 
 @Component({
   selector: 'app-contact',
@@ -10,10 +10,10 @@ import {}
 })
 export class ContactComponent implements OnInit {
 
-  constructor() { }
+  constructor(private contactser:ContactserviceService,private fb:FormBuilder) { }
 
   ngOnInit() {
   }
-
+  contactobject:Contactdetails;
 
 }
