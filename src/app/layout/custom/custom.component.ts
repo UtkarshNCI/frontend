@@ -114,7 +114,7 @@ fetchProduct() {
    
   }
 
-  total:number=0;
+  totalcalc:number=0;
   placeOrder(){
     this.orderInputs['address']=this.addressForm.value;
     this.itemList.forEach((value: any, key: string) => {
@@ -122,12 +122,17 @@ fetchProduct() {
   });
     this.orderInputs['products']=this.itemtemp;
     this.itemtemp.forEach(element => {
-      this.total=this.total+element.price;
+      // this.total=this.total+element.price;
+      console.log(element.price);
+      this.totalcalc=this.totalcalc+element.price;
     });
-
-    console.log();
+    this.orderInputs['total']=this.totalcalc;
+    console.log(this.totalcalc);
     console.log(this.orderInputs);
 
+    
+  }
+  checkOut(){
     
   }
 }
