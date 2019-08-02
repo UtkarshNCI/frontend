@@ -114,12 +114,17 @@ fetchProduct() {
    
   }
 
+  total:number=0;
   placeOrder(){
     this.orderInputs['address']=this.addressForm.value;
     this.itemList.forEach((value: any, key: string) => {
       this.itemtemp.push(value);
   });
     this.orderInputs['products']=this.itemtemp;
+    this.itemtemp.forEach(element => {
+      this.total=this.total+element.price;
+    });
+
     console.log();
     console.log(this.orderInputs);
 
