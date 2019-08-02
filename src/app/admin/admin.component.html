@@ -47,7 +47,7 @@
           </tr>
           </thead>
           <tbody>
-              <tr *ngFor="let product of product ;index as i">
+              <tr *ngFor="let tproduct of product ;index as i">
                   <th scope="row">{{ i + 1 }}</th>
                   <!-- <td>{{product.productName}}</td> -->
                   <!-- <td>{{product.brand}}</td>
@@ -55,14 +55,14 @@
                   <td>{{product.price}}</td>
                   <td>{{product.quantity}}</td>
                   <td>{{product.description}}</td> -->
-                  <td><ngb-highlight [result]="product.productName" [term]="filter.value"></ngb-highlight></td>
-                  <td><ngb-highlight [result]="product.brand" [term]="filter.value"></ngb-highlight></td>
-                  <td><ngb-highlight [result]="product.modelNumber" ></ngb-highlight></td>
-                  <td><ngb-highlight [result]="product.price" ></ngb-highlight></td>
-                  <td><ngb-highlight [result]="product.quantity"></ngb-highlight></td>
-                  <td><ngb-highlight [result]="product.description" ></ngb-highlight></td>                                
+                  <td><ngb-highlight [result]="tproduct.productName" [term]="filter.value"></ngb-highlight></td>
+                  <td><ngb-highlight [result]="tproduct.brand" [term]="filter.value"></ngb-highlight></td>
+                  <td><ngb-highlight [result]="tproduct.modelNumber" ></ngb-highlight></td>
+                  <td><ngb-highlight [result]="tproduct.price" ></ngb-highlight></td>
+                  <td><ngb-highlight [result]="tproduct.quantity"></ngb-highlight></td>
+                  <td><ngb-highlight [result]="tproduct.description" ></ngb-highlight></td>                                
                   <!-- <td><button type="button" class="btn btn-warning" (click)="getNavigation('update', product.p_id)">Edit</button></td> -->
-                  <td><button class="btn  btn-outline-primary" (click)="open(content)">Edit</button></td>
+                  <td><button class="btn  btn-outline-primary" (click)="open(content,tproduct)">Edit</button></td>
                   <td><button type="button" class="btn btn-danger"(click)="deleteProduct(product.productId)">Delete</button></td>
               </tr>
           </tbody>
@@ -77,20 +77,105 @@
                 </button>
               </div>
               <div class="modal-body">
-                <form>
-                  <div class="form-group">
-                    <label for="dateOfBirth">Date of birth</label>
-                    <div class="input-group">
-                      <input id="dateOfBirth" class="form-control" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #dp="ngbDatepicker">
-                      <div class="input-group-append">
-                        <button class="btn btn-outline-secondary calendar" (click)="dp.toggle()" type="button"></button>
+                  <form [formGroup]="updateForm" ngNativeValidate >
+                      <div class="form-group">
+                        <div class="row">
+                          
+                          <div class="col-md-2">
+                            <label for="updateName" style="color: lightseagreen;font-size: medium;" ><b>Product Name:</b></label>
+                          </div>
+                          <div class="col-md-6">
+                            <input type="text" formControlName="updateName" placeholder="Product Name" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" required>
+                          </div>
+                          <div class="col-md-4">
+                            <span style="font-weight: bold;color: red;" *ngIf="!updateForm.controls['updateName'].valid && updateForm.controls['updateName'].dirty">
+                              <span *ngIf="updateForm.controls.updateName.errors.required">Product Name is Required.</span>
+                            </span> 
+                          </div>
+                        </div>
+                        <br>
+                        
+                        <div class="row">
+                          <div class="col-md-2">
+                            <label for="updatebrand" style="color: lightseagreen;font-size: medium;" ><b>Product Brand</b></label>
+                          </div>
+                          <div class="col-md-6">
+                            <input type="text" formControlName="updatebrand" placeholder="Product Brand Name" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" required>
+                          </div>
+                        
+                          
+                        </div>
+                        <br>
+                        
+                        <div class="row">
+                          <div class="col-md-2">
+                            <label for="updatemodelNumber" style="color: lightseagreen;font-size: medium;" ><b>Product Model Number</b></label>
+                          </div>
+                          <div class="col-md-6">
+                            <input type="text" formControlName="updatemodelNumber" placeholder="Product Model Number" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" required>
+                          </div>
+                          </div>
+                        
+                        <br>
+                        
+                        <div class="row">
+                          <div class="col-md-2">
+                            <label for="updatecategory" style="color: lightseagreen;font-size: medium;" ><b>Category:</b></label>
+                          </div>
+                          <div class="col-md-6">
+                            <select type="text" required formControlName="updatecategory" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="Enter Category" required>
+                                <option value="CPU">CPU</option>
+                                <option value="Motherboard">Motherboard</option>
+                                <option value="RAM">Ram</option>
+                                <option value="Harddisk">Harddisk</option>
+                                <option value="Keyboard">Keyboard</option>
+                                <option value="Mouse">Mouse</option>
+                                <option value="Display">Display</option>
+                            </select>    
+                            </div>
+                          <div class="col-md-4">
+                              <!-- <span style="font-weight: bold;color: red;" *ngIf="!inventoryForm.controls['category'].valid&&inventoryForm.controls['category'].dirty">
+                                  <span *ngIf="inventoryForm.controls.category.errors.required">Enter Category</span>
+                                </span> -->
+                          </div>
+                        </div>                              
+                       <br>
+                        
+                       <div class="row">
+                          <div class="col-md-2">
+                            <label for="updateprice" style="color: lightseagreen;font-size: medium;" ><b>Price:</b></label>
+                          </div>
+                          <div class="col-md-6">
+                            <input type="number" name="updateprice" formControlName="updateprice" placeholder="Price" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" required>
+                          </div>
+                          </div>
+                        
+                        <br>
+                        <div class="row">
+                            <div class="col-md-2">
+                              <label for="updatequantity" style="color: lightseagreen;font-size: medium;" ><b>Quantity:</b></label>
+                            </div>
+                            <div class="col-md-6">
+                              <input type="number" required formControlName="updatequantity" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="Enter quantity">
+                            </div>
+                          </div>
+                       
+                        <div class="row">
+                          <div class="col-md-2">
+                            <label for="updatedescription" style="color: lightseagreen;font-size: medium;" ><b>Description:</b></label>
+                          </div>
+                          <div class="col-md-6">
+                            <input type="text" formControlName="updatedescription" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="Enter description" required>
+                          </div>
+                          </div>
+                        
+                        <br>
                       </div>
-                    </div>
-                  </div>
-                </form>
+                    </form>
+
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn  btn btn-danger" (click)="modal.close('Save click')">Update</button>
+                <button type="button" class="btn  btn btn-danger" (click)="updateProduct()">Update</button>
               </div>
             </ng-template>
             
@@ -100,7 +185,7 @@
       </ng-template>
     </ngb-tab>
     <ngb-tab  id ="2" >
-      <ng-template ngbTabTitle ></ng-template>
+      <ng-template ngbTabTitle >Show Order</ng-template>
       <ng-template ngbTabContent><p>khfsf</p>
       </ng-template>
     </ngb-tab>

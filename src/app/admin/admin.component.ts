@@ -31,6 +31,8 @@ export class AdminComponent implements OnInit {
   filter = new FormControl('');
   productfilter$:Observable<Product[]>;
   catname:string="";
+  updateInputs:Inventory;
+  updateForm:FormGroup;
 
   constructor(private fb:FormBuilder,private adminService:AdminService,public pipe: DecimalPipe,private fm:FormsModule,private modalService: NgbModal) {
     
@@ -59,7 +61,7 @@ export class AdminComponent implements OnInit {
     
     this.onValueChanges();    
     //this.reloadProduct();
-
+  
   }
 
   filtersearch(){
@@ -68,7 +70,7 @@ export class AdminComponent implements OnInit {
   }
 
   updateProduct(id:number){
-    this.adminService.updateProduct(id).subscribe((response)=>{
+    this.adminService.updateProduct(this.updateInputs,id).subscribe((response)=>{
       if(response.status == 200){
         this.reloadProduct();
       }
@@ -183,8 +185,17 @@ export class AdminComponent implements OnInit {
 
 
 
-    open(content) {
+    open(content,uproduct:any) {
       this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'});
+      this.updateForm = this.fb.group({
+        updateName:  [uproduct.productName, Validators.required],
+        updatebrand:[uproduct.brand,Validators.required],
+        updatemodelNumber:[uproduct.modelNumber,Validators.required],
+        updatecategory:[uproduct.category,Validators.required],
+        updateprice:[uproduct.price,Validators.required],
+        updatequantity:[uproduct.quantity,Validators.required],
+        updatedescription:[uproduct.description,Validators.required],
+      });
     }
   
 }

@@ -43,4 +43,12 @@ public apiURL3:string="http://localhost:8080/buildMyPc/Admin/delete";
    return this.http.delete(this.apiURL3+"/"+id);
 
   }
+public apiURL4:string="http://localhost:8080/buildMyPc/Admin/product";
+updateProduct(update:any,id:number){
+  const headers = new Headers({'Content-Type':'application/json'});
+  return this.http.put(this.apiURL4+"/"+id,update);
+
+  } 
+
+
 }
