@@ -8,7 +8,7 @@ import {NgbPanelChangeEvent} from '@ng-bootstrap/ng-bootstrap';
 
 var storeList:String[]=[];
 //var count:number=0;
-var itemList:Map<string,any>;
+
 
 @Component({
   selector: 'app-custom',
@@ -37,7 +37,8 @@ export class CustomComponent implements OnInit {
   addressForm:FormGroup;
   orderInputs:Order;//Sending this object to server
   
-  
+  itemList:Map<string,any>=new Map<string,any>();
+  itemtemp:Product[];
 
   
   
@@ -46,6 +47,7 @@ export class CustomComponent implements OnInit {
   constructor(private fetchinfoService:FetchinfoService,private fb:FormBuilder) {  
     //this.fetchProduct();
     this.product=[{productName:"Test-Name",productId:0,price:0,brand:"Test-Brand",description:"",quantity:0,category:"CPU"}];
+    this.orderInputs={address:"",doo:new Date(),email:"",orderID:1,products:this.product,total:1000};
    }
 
   ngOnInit() {
@@ -93,9 +95,11 @@ fetchProduct() {
       
     }
     
-    itemList.set(item.category,item.productName);
+    this.itemList.forEach((value: any, key: string) => {
+      this.itemtemp.push(value);
+  });
 
-    console.log(itemList);
+   // console.log(itemList);
     
   }
 
@@ -112,6 +116,10 @@ fetchProduct() {
 
   placeOrder(){
     this.orderInputs['address']=this.addressForm.value;
+    this.orderInputs['products']=this.itemtemp;
+    console.log();
+    console.log(this.orderInputs);
+
     
   }
 }
