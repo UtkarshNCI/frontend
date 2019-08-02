@@ -71,7 +71,10 @@ export class AdminComponent implements OnInit {
   }
 
   updateProduct(){
-    this.adminService.updateProduct(this.updateInputs,this.id).subscribe((response)=>{
+    console.log(this.updateInputs);
+    this.updateInputs=this.updateForm.value;
+    console.log(this.updateInputs);
+    this.adminService.adminupdateProduct(this.updateInputs,this.id).subscribe((response)=>{
       if(response.status == 200){
         this.reloadProduct();
       }
@@ -198,7 +201,9 @@ export class AdminComponent implements OnInit {
         updatequantity:[uproduct.quantity,Validators.required],
         updatedescription:[uproduct.description,Validators.required],
       });
+     this.updateInputs=this.updateForm.value;
       this.id=uproduct.productId;
+      console.log(this.id);
     }
 
   
