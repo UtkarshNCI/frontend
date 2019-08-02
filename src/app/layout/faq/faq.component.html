@@ -1,1 +1,28 @@
-<p>faq works!</p>
+
+<div class="col">
+        <div class="card">
+            <div class="card-header">
+                FAQ(Frequently Asked Question)
+            </div>
+            <div class="card-body">
+                    <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
+                            <ngb-panel title="Question1">
+                              <ng-template ngbPanelContent>
+                           Answer1
+                              </ng-template>
+                            </ngb-panel>
+                            <ngb-panel title="Question2">
+                              <ng-template ngbPanelContent>
+                               Answer 2
+                              </ng-template>
+                            </ngb-panel>
+                            <ngb-panel title="Question 3" >
+                              <ng-template ngbPanelContent>
+                                Answer 3
+                              </ng-template>
+                            </ngb-panel>
+                    </ngb-accordion>
+            </div>
+        </div>
+        
+    </div>
