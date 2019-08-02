@@ -17,7 +17,8 @@ const routes: Routes = [
   //     { path: 'components', loadChildren: () => import('./bs-component/bs-component.module').then(m => m.BsComponentModule) }
             { path: 'prebuildpc', loadChildren: () => import('./blank-page/blank-page.module').then(m => m.BlankPageModule) },
             { path: 'accessories', loadChildren: () => import('./blank-page/blank-page.module').then(m => m.BlankPageModule) },
-            { path: 'contact', loadChildren: () => import('./contact/contact.module').then(m => m.ContactModule) }
+            { path: 'contact', loadChildren: () => import('./contact/contact.module').then(m => m.ContactModule) },
+            { path: 'faq', loadChildren: () => import('./faq/faq.module').then(m => m.FaqModule) }
          ]
     }
 ];
