@@ -64,4 +64,8 @@ orderCustomer(order:any){
     return this.http.post(this.apiURL6,order,requestOptions);
 }
 
+public apiURL7:string="http://localhost:8080/buildMyPc/Admin/message";
+displayMessage(){
+  return this.http.get(this.apiURL7);
+}
 }
