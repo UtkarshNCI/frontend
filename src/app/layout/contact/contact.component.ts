@@ -9,11 +9,32 @@ import {Contactdetails} from '../../models/contactModels';
   styleUrls: ['./contact.component.scss']
 })
 export class ContactComponent implements OnInit {
+  contactobject:Contactdetails;
+  contactForm:FormGroup;
+  globalresponse:any;
 
   constructor(private contactser:ContactserviceService,private fb:FormBuilder) { }
 
   ngOnInit() {
-  }
-  contactobject:Contactdetails;
+    this.contactForm=this.fb.group({
+      name:"",
+      email:"",
+      phone:"",
+      message:""
 
+    })
+  }
+
+  onSubmit(){
+    this.contactobject=this.contactForm.value;
+    console.log(this.contactobject);
+    this.contactser.contactFunc(this.contactobject).subscribe((result)=>{
+      this.globalresponse=result;
+    },error =>{},
+    ()=>
+    {
+      
+    })
+  }
+  
 }
