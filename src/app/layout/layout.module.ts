@@ -7,6 +7,7 @@ import { LayoutRoutingModule } from './layout-routing.module';
 import { LayoutComponent } from './layout.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { Global } from '../shared/global';
+//import { ContactComponent } from './contact/contact.component';
 
 
 @NgModule({

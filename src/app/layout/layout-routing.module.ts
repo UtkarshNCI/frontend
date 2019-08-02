@@ -16,7 +16,8 @@ const routes: Routes = [
         //     { path: 'grid', loadChildren: () => import('./grid/grid.module').then(m => m.GridModule) },
   //     { path: 'components', loadChildren: () => import('./bs-component/bs-component.module').then(m => m.BsComponentModule) }
             { path: 'prebuildpc', loadChildren: () => import('./blank-page/blank-page.module').then(m => m.BlankPageModule) },
-            { path: 'accessories', loadChildren: () => import('./blank-page/blank-page.module').then(m => m.BlankPageModule) }
+            { path: 'accessories', loadChildren: () => import('./blank-page/blank-page.module').then(m => m.BlankPageModule) },
+            { path: 'contact', loadChildren: () => import('./contact/contact.module').then(m => m.ContactModule) }
          ]
     }
 ];
