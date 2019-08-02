@@ -43,8 +43,8 @@ export class AdminComponent implements OnInit {
     //this.reloadProduct();
     this.product=[{productName:"",productId:0,price:0,brand:"",description:"",quantity:0,category:""}];
 
-    this.order=[{orderID:20,products:[0],email:"abc@gmail.com",doo:new Date(),total:2200,address:"E1 state bank nagar"}];
-    
+    this.order=[{orderID:20,products:[],email:"abc@gmail.com",doo:new Date(),total:2200,address:"E1 state bank nagar"}];
+
     
     //this.onValueChanges();   works first time only
     //console.log("coming"); 
@@ -123,6 +123,23 @@ export class AdminComponent implements OnInit {
      //productlist=this.product;
      
      console.log(productarr);
+    //   console.log(this.product);
+    }
+    );  
+        
+  }
+
+  reloadOrder() {
+    //console.log(this.categoryForm.get('categoryOption'));
+    //let cat=this.categoryForm.controls['category'].value;
+    //console.log(this.categoryForm.controls['categoryOption']);
+    this.adminService.displayorder().subscribe((result)=>{
+      this.showproductresponse=result;
+    },error=>{},()=>{this.order=this.showproductresponse.json();
+     //productarr=this.product;
+     //productlist=this.product;
+     
+     //console.log(productarr);
     //   console.log(this.product);
     }
     );  
@@ -221,6 +238,7 @@ export class AdminComponent implements OnInit {
    
     }
     openorder(content,o_products:any){
+      this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title',size:'lg'});
       this.orderproduct=o_products;
 
     }

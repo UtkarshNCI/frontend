@@ -51,6 +51,9 @@ adminupdateProduct(update:any,id:number){
   return this.http.put(this.apiURL4+"/"+id,update,requestOptions);
 
   } 
-
+  public apiURL5:string="http://localhost:8080/buildMyPc/common/";
+displayorder(){
+  return this.http.get(this.apiURL5);
+}  
 
 }
