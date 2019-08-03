@@ -15,7 +15,7 @@ import { HttpModule } from '@angular/http';
 // import { SignupComponent } from './index/signup/signup.component';
 // import { PageheaderComponent } from './pageheader/pageheader.component';
 // import { LayoutComponent } from './layout/layout.component';
-
+import {AuthGuard} from './shared/guard/auth.guard';
 
 @NgModule({
   declarations: [
@@ -26,7 +26,7 @@ import { HttpModule } from '@angular/http';
     AppRoutingModule,
     NgbModule,BrowserAnimationsModule,FormsModule,ReactiveFormsModule,HttpModule
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
