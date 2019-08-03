@@ -9,7 +9,7 @@ import { Contactdetails } from '../models/contactModels';
 })
 export class ContactserviceService {
 
-  public apiURL:string="http://localhost:8080/buildMyPc/Comman/contactus";
+  public apiURL:string="http://localhost:8080/buildMyPc/User/contactUs";
   constructor(private http:Http) {this.http=http; }
 
   contactFunc(msg:any){

@@ -67,9 +67,9 @@ export class AdminComponent implements OnInit {
 
     this.categoryForm=this.fb.group({categoryOption:['']});
 
-   // this.reloadMessage();
+    this.reloadMessage();
     this.onValueChanges();    
-    //this.reloadProduct();
+    this.reloadProduct();
   
   }
 
@@ -91,6 +91,7 @@ export class AdminComponent implements OnInit {
       }
     })
     this.id=null;
+    this.reloadProduct();
   }
   
 //   deleteProduct(id: number){
