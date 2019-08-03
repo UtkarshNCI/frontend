@@ -6,6 +6,9 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./blank-page.component.scss']
 })
 export class BlankPageComponent implements OnInit {
+    listProduct:any=[{name:"a",description:"abc"},{name:"a",description:"abc"},{name:"a",description:"abc"},{name:"a",description:"abc"},{name:"a",description:"abc"},{name:"a",description:"abc"},{name:"a",description:"abc"},{name:"a",description:"abc"},{name:"a",description:"abc"},{name:"a",description:"abc"},{name:"a",description:"abc"}]
+    
+    
     constructor() {}
 
     ngOnInit() {}
