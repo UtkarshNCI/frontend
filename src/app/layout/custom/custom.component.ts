@@ -41,6 +41,8 @@ export class CustomComponent implements OnInit {
   itemList:Map<string,any>=new Map<string,any>();
   itemtemp:Product[]=[];
 
+  catstring:string="";
+
   
   
 
@@ -91,7 +93,8 @@ fetchProduct() {
       
       if(this.titlearr[index]==category)
       {
-        this.titlearr[index]=this.titlearr[index]+":------- "+item.productName;
+        //this.titlearr[index]=this.titlearr[index]+":------- "+item.productName;
+        this.catstring=item.productName;
       }
       
     }
